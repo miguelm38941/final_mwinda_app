@@ -13,7 +13,7 @@ class FeedCard3 extends StatelessWidget {
       right: 0,
       top: 15.0,
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, userDetailsViewRoute,
+        onTap: () => Navigator.pushNamed(context, singlePostPageRoute,
             arguments: rubrique.id),
         child: Hero(
           tag: tag3,

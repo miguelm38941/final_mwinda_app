@@ -12,7 +12,7 @@ class FeedCard2 extends StatelessWidget {
       left: 0,
       top: 15.0,
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, blogPageRoute,
+        onTap: () => Navigator.pushNamed(context, postsPageRoute,
             arguments: rubrique.id),
         child: Hero(
           tag: rubrique.title,
@@ -86,7 +86,7 @@ class FeedCard2 extends StatelessWidget {
             child: Material( 
               child: GestureDetector(
                 onTap:() => Navigator.pushNamed(
-                  context, blogPageRoute,
+                  context, postsPageRoute,
                   arguments: rubrique.id
                 ),
                 child: Container(

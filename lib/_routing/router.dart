@@ -15,7 +15,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => HomePage());
     case feedsPageRoute:
       return MaterialPageRoute(builder: (context) => FeedsPage());
-    case blogPageRoute:
+    case postsPageRoute:
+      return MaterialPageRoute(builder: (context) => MyHomePage());
+    case singlePostPageRoute:
       return MaterialPageRoute(builder: (context) => MyHomePage());
     case splashScreenRoute:
       return MaterialPageRoute(builder: (context) => SplashScreen());

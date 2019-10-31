@@ -98,24 +98,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Future<List<Post>> showPosts() async {
-    debugPrint('000000000000000000');
-    var data = await http.get('https://mwinda-rdc.org/mobileapi/blog/posts');
-      debugPrint("11111111111");
-    var dataDecoded = json.decode(data.body);
-      debugPrint("2222222");
+    //debugPrint('000000000000000000');
+    var response = await http.get('https://www.mwinda-rdc.org/mobileapi/blog/posts');
+    //debugPrint("11111111111");
+    var dataDecoded = json.decode(response.body);
+    //debugPrint("2222222" + dataDecoded.toString());
 
     List<Post> posts = List();
-    dataDecoded['result'].forEach((post){
-      debugPrint("3333333" + post.tospring());
 
-      String title = post["title"];
-      if(title.length>25){
-        title = post["title"]; //.substring(1,25) + "...";
-      }
-      String body = post["article"].replaceAll(RegExp(r'\n'), " ");
-      posts.add(new Post(title, body, post["image"]));
-    });
-    return posts;
+    if (response.statusCode == 200) {
+
+      dataDecoded.forEach((post){
+      //debugPrint("3333333" + post.toString());
+
+        String title = post['title'];
+        if(title.length>25){
+          title = post['title']; //.substring(1,25) + "...";
+        }
+        String body = post['article'].replaceAll(RegExp(r'\n'), " ");
+        posts.add(new Post(title, body, post['image']));
+      });
+      //debugPrint("444444" + posts.toString());
+      return posts;
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Echec du chargement des articles');
+    }
   }
 
   @override
@@ -134,45 +142,45 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           new Transform.translate(
             offset: new Offset(0.0, MediaQuery.of(context).size.height * 0.1050),
-
-
             child: FutureBuilder(
               future: showPosts(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                    
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(0.0),
+                    scrollDirection: Axis.vertical,
+                    primary: true,
+                    itemCount: snapshot.data.length, //data.length,
+                    itemBuilder: (BuildContext content, int index) {                   
+                      return AwesomeListItem(
 
-
-
-             new ListView.builder(
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(0.0),
-              scrollDirection: Axis.vertical,
-              primary: true,
-              itemCount: snapshot.data.length, //data.length,
-              itemBuilder: (BuildContext content, int index) {
-                return AwesomeListItem(
-                    title: snapshot.data[index].title,
-                    content: 'Lorem Ipsum',//snapshot.data[index]["content"],
-                    color: Colors.lightGreen[100],//[index]["color"],
-                    image: snapshot.data[index].image
+                          title: snapshot.data[index].title,
+                          content: 'Lorem Ipsum',//snapshot.data[index]["content"],
+                          color: Colors.lightGreen[100],//[index]["color"],
+                          image: snapshot.data[index].image
+                      );
+                    },
                   );
-              },
-            );
-
-
-
-                } else {
-                  return Align(
+                } else {                  
+                  return Text("${snapshot.error}");
+                  /*return Align(
                     alignment: FractionalOffset.center,
                     child: CircularProgressIndicator(),
-                  );
+                  );*/
                 }
+                // By default, show a loading spinner.
+                return Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator()
+                    ]                
+                  ) 
+                );
               }
             )
-
-
-
           ),
 
           new Transform.translate(
