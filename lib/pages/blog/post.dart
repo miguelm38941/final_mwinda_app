@@ -1,4 +1,4 @@
 class Post {
-  String title, text, image;
-  Post(this.title, this.text, this.image);
+  String title, category, text, image;
+  Post(this.title, this.category, this.text, this.image);
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/utils/utils.dart';
 import 'package:final_mwinda_app/pages/blog/post.dart';
 import 'package:http/http.dart' as http;
+import 'package:basic_utils/basic_utils.dart';
+
 //import 'package:mwinda_app/app_screens/posts/post_detail.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -116,7 +118,11 @@ class _MyHomePageState extends State<MyHomePage> {
           title = post['title']; //.substring(1,25) + "...";
         }
         String body = post['article'].replaceAll(RegExp(r'\n'), " ");
-        posts.add(new Post(title, body, post['image']));
+        if (post['image'] != null) {
+          if(post['image'].contains('images') ) {
+            posts.add(new Post(title, post['category'], body, post['image']));
+          }
+        } 
       });
       //debugPrint("444444" + posts.toString());
       return posts;
@@ -142,20 +148,21 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           new Transform.translate(
             offset: new Offset(0.0, MediaQuery.of(context).size.height * 0.1050),
+            //MediaQuery.of(context).size.height * 0.1050),
             child: FutureBuilder(
               future: showPosts(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView.builder(
                     shrinkWrap: true,
-                    padding: const EdgeInsets.all(0.0),
+                    padding: const EdgeInsets.only(top: 0.0, bottom: 60.0),//.all(0.0),
                     scrollDirection: Axis.vertical,
                     primary: true,
                     itemCount: snapshot.data.length, //data.length,
                     itemBuilder: (BuildContext content, int index) {                   
                       return AwesomeListItem(
-
                           title: snapshot.data[index].title,
+                          category: snapshot.data[index].category,
                           content: 'Lorem Ipsum',//snapshot.data[index]["content"],
                           color: Colors.lightGreen[100],//[index]["color"],
                           image: snapshot.data[index].image
@@ -267,11 +274,12 @@ class MyClipper extends CustomClipper<Path> {
 
 class AwesomeListItem extends StatefulWidget {
   String title;
+  String category;
   String content;
   Color color;
   String image;
 
-  AwesomeListItem({this.title, this.content, this.color, this.image});
+  AwesomeListItem({this.title, this.category, this.content, this.color, this.image});
 
   @override
   _AwesomeListItemState createState() => new _AwesomeListItemState();
@@ -281,7 +289,7 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
   @override
   Widget build(BuildContext context) {
     return Container( 
-      margin: const EdgeInsets.only(left:0.0, right:0.0, top:5.0, bottom:5.0), 
+      margin: const EdgeInsets.only(left:0.0, right:0.0, top:2.0, bottom:2.0), 
       color: Colors.lightBlue[100], 
       child: new Row(
         children: <Widget>[
@@ -296,19 +304,19 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new Text(
-                    widget.title,
+                    StringUtils.capitalize(widget.title),
                     style: TextStyle(
                         color: Colors.grey.shade800,
-                        fontSize: 18.0,
+                        fontSize: 22.0,
                         fontWeight: FontWeight.bold),
                   ),
                   new Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding: const EdgeInsets.only(top: 0.0),
                     child: new Text(
-                      widget.content,
+                      widget.category,
                       style: TextStyle(
                           color: Colors.grey.shade500,
-                          fontSize: 12.0,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -334,25 +342,43 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                     ),
                   ),
                 ),
-                new Transform.translate(
-                  offset: Offset(10.0, 0.0),
-                  child: new Card(
-                    elevation: 10.0,
-                    child: new Container(
-                      height: 150.0,
-                      width: 150.0,
-                      //color: Colors.lightBlue[100],
-                      decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(14.0),
-                          color: Colors.lightBlue[100],
-                          image: DecorationImage(
-                            image: AssetImage(AvailableImages.rubriqActualites['assetPath']),
-                            fit: BoxFit.cover,
-                          )
+                //if (widget.image.contains('images')) {
+                  new Transform.translate(
+                    offset: Offset(10.0, 0.0),
+                    //child: new Card(
+                      //elevation: 10.0,
+                      child: ClipRRect(
+                          borderRadius: new BorderRadius.circular(20.0),
+                          child: Image.network(
+                              widget.image,
+                              height: 150.0,
+                              width: 150.0,
+                              fit: BoxFit.fitHeight,
+                          ),
                       ),
-                    ),
+                    //),
                   ),
-                ),
+                /*} else {
+                  new Transform.translate(
+                    offset: Offset(10.0, 0.0),
+                    //child: new Card(
+                      //elevation: 10.0,
+                      child: ClipRRect(
+                          borderRadius: new BorderRadius.circular(20.0),
+                          child: Container(
+                            decoration: new BoxDecoration(
+                              borderRadius: BorderRadius.circular(14.0),
+                              color: Colors.lightBlue[100],
+                              image: DecorationImage(
+                                image: AssetImage(AvailableImages.rubriqActualites['assetPath']),
+                                fit: BoxFit.cover,
+                              )
+                            ),
+                          ),
+                      ),
+                    //),
+                  ),
+                }*/
               ],
             ),
           ),
