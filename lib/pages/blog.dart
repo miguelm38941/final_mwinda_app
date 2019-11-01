@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/utils/utils.dart';
 import 'package:final_mwinda_app/pages/blog/post.dart';
@@ -120,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
         String body = post['article'].replaceAll(RegExp(r'\n'), " ");
         if (post['image'] != null) {
           if(post['image'].contains('images') ) {
-            posts.add(new Post(title, post['category'], body, post['image']));
+            posts.add(new Post(int.parse(post['id']), title, post['category'], body, post['image']));
           }
         } 
       });
@@ -161,6 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: snapshot.data.length, //data.length,
                     itemBuilder: (BuildContext content, int index) {                   
                       return AwesomeListItem(
+                          id: snapshot.data[index].id,
                           title: snapshot.data[index].title,
                           category: snapshot.data[index].category,
                           content: 'Lorem Ipsum',//snapshot.data[index]["content"],
@@ -273,13 +275,14 @@ class MyClipper extends CustomClipper<Path> {
 }
 
 class AwesomeListItem extends StatefulWidget {
+  int id;
   String title;
   String category;
   String content;
   Color color;
   String image;
 
-  AwesomeListItem({this.title, this.category, this.content, this.color, this.image});
+  AwesomeListItem({this.id, this.title, this.category, this.content, this.color, this.image});
 
   @override
   _AwesomeListItemState createState() => new _AwesomeListItemState();
@@ -288,6 +291,7 @@ class AwesomeListItem extends StatefulWidget {
 class _AwesomeListItemState extends State<AwesomeListItem> {
   @override
   Widget build(BuildContext context) {
+    //debugPrint('IIIID ' + widget.id.toString());
     return Container( 
       margin: const EdgeInsets.only(left:0.0, right:0.0, top:2.0, bottom:2.0), 
       color: Colors.lightBlue[100], 
@@ -297,32 +301,40 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
             width: 5.0, height: 190.0, color: Colors.lightBlue,
           ),
           new Expanded(
-            child: new Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Text(
-                    StringUtils.capitalize(widget.title),
-                    style: TextStyle(
+            child: InkWell(
+              onTap: () => Navigator.pushNamed(
+                context, 
+                singlePostPageRoute, 
+                arguments: widget.id
+              ),
+              child: new Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Text(
+                      StringUtils.capitalize(widget.title),
+                      style: TextStyle(
                         color: Colors.grey.shade800,
                         fontSize: 22.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  new Padding(
-                    padding: const EdgeInsets.only(top: 0.0),
-                    child: new Text(
-                      widget.category,
-                      style: TextStyle(
-                          color: Colors.grey.shade500,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold
+                      ),
                     ),
-                  ),
-                ],
+                    new Padding(
+                      padding: const EdgeInsets.only(top: 0.0),
+                      child: new Text(
+                        widget.id.toString(),
+                        style: TextStyle(
+                            color: Colors.grey.shade500,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ) 
           ),
           // Contient l'image d'un item de la liste'
           new Container(

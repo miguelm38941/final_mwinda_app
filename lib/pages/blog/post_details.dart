@@ -4,15 +4,58 @@ import 'package:flutter/rendering.dart';
 import 'package:final_mwinda_app/models/user.dart';
 import 'package:final_mwinda_app/utils/colors.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:final_mwinda_app/pages/blog/post.dart';
+import 'package:http/http.dart' as http;
+import 'package:basic_utils/basic_utils.dart';
+import 'package:final_mwinda_app/utils/utils.dart';
+import 'dart:async';
+import 'dart:convert';
 
 class PostDetailsPage extends StatelessWidget {
-  final int userId;
+  final String userId = '120';
 
-  const PostDetailsPage({Key key, this.userId}) : super(key: key);
+  //const PostDetailsPage({Key key, this.userId}) : super(key: key);
+
+
+
+  Future<List<Post>> showPosts() async {
+    //debugPrint('000000000000000000');
+    var response = await http.get('https://www.mwinda-rdc.org/mobileapi/blog/posts/120');
+    //debugPrint("11111111111");
+    var post = json.decode(response.body);
+    //debugPrint("2222222" + dataDecoded.toString());
+
+    List<Post> posts = List();
+
+    if (response.statusCode == 200) {
+
+      //dataDecoded.forEach((post){
+      //debugPrint("3333333" + post.toString());
+
+        String title = post['title'];
+        if(title.length>25){
+          title = post['title']; //.substring(1,25) + "...";
+        }
+        String body = post['article'].replaceAll(RegExp(r'\n'), " ");
+        if (post['image'] != null) {
+          if(post['image'].contains('images') ) {
+            posts.add(new Post(int.parse(post['id']), title, post['category'], body, post['image']));
+          }
+        } 
+      //});
+      debugPrint("444444" + post.toString());
+      return post;
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Echec du chargement des articles');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    final User user = users.singleWhere((user) => user.id == userId);
-
+    //final User user = users.singleWhere((user) => user.id == 120);
+ debugPrint('THEID 120');
     // final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
@@ -37,13 +80,13 @@ class PostDetailsPage extends StatelessWidget {
     final userImage = Stack(
       children: <Widget>[
         Hero(
-          tag: user.photo,
+          tag: AvailableImages.woman1['assetPath'],
           child: Container(
             height: 350.0,
             width: deviceWidth,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(user.photo),
+                image: AssetImage(AvailableImages.woman1['assetPath']),
                 fit: BoxFit.cover,
               ),
             ),
@@ -58,7 +101,7 @@ class PostDetailsPage extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Text(
-              user.name,
+              'John Doe',//user.name,
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
@@ -79,11 +122,11 @@ class PostDetailsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Icon(
-                      user.gender == 'M' ? LineIcons.mars : LineIcons.venus,
+                      LineIcons.mars,//user.gender == 'M' ? LineIcons.mars : LineIcons.venus,
                       color: Colors.white,
                     ),
                     Text(
-                      user.age.toString(),
+                      '28',//user.age.toString(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -100,7 +143,7 @@ class PostDetailsPage extends StatelessWidget {
     final userLocation = Container(
       padding: EdgeInsets.only(left: 20.0, right: 20.0),
       child: Text(
-        user.location,
+        'Seattle',//user.location,
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.bold,
@@ -141,7 +184,7 @@ class PostDetailsPage extends StatelessWidget {
                 height: 2.0,
               ),
               Text(
-                "My name is ${user.name} and i love meeting new people and making new friends. I love sports, reading, hiking and partying. Don't be reluctant to hit me up.",
+                "My name is .......... and i love meeting new people and making new friends. I love sports, reading, hiking and partying. Don't be reluctant to hit me up.",
                 style: TextStyle(
                   color: Colors.black54,
                   fontWeight: FontWeight.w600,

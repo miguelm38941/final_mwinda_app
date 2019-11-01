@@ -5,6 +5,7 @@ import 'package:final_mwinda_app/pages/landing.dart';
 import 'package:final_mwinda_app/pages/feeds.dart';
 import 'package:final_mwinda_app/pages/splash_screen.dart';
 import 'package:final_mwinda_app/pages/blog.dart';
+import 'package:final_mwinda_app/pages/blog/post_details.dart';
 
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -18,7 +19,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case postsPageRoute:
       return MaterialPageRoute(builder: (context) => MyHomePage());
     case singlePostPageRoute:
-      return MaterialPageRoute(builder: (context) => MyHomePage());
+      return MaterialPageRoute(builder: (context) => PostDetailsPage());
     case splashScreenRoute:
       return MaterialPageRoute(builder: (context) => SplashScreen());
     default:
