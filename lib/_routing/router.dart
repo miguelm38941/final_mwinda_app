@@ -19,7 +19,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case postsPageRoute:
       return MaterialPageRoute(builder: (context) => MyHomePage());
     case singlePostPageRoute:
-      return MaterialPageRoute(builder: (context) => PostDetailsPage());
+      return MaterialPageRoute(builder: (context) => PostDetailsPage(postId: settings.arguments));
     case splashScreenRoute:
       return MaterialPageRoute(builder: (context) => SplashScreen());
     default:
