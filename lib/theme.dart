@@ -12,7 +12,13 @@ ThemeData buildThemeData(){
     primaryColorLight: primaryLight,
     scaffoldBackgroundColor: Colors.white,
     buttonColor: Colors.lightBlue,
-    buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.accent),
+    buttonTheme: ButtonThemeData(
+      textTheme: ButtonTextTheme.primary,
+      buttonColor: Colors.red,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+    ),
     /*accentColor: Colors.lightBlueAccent,*/
     accentColor: secondaryColor,
   );

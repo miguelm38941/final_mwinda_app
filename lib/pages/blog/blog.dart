@@ -1,14 +1,10 @@
 import 'dart:math';
 
-import 'package:final_mwinda_app/_routing/routes.dart';
+
 import 'package:flutter/material.dart';
-import 'package:final_mwinda_app/utils/utils.dart';
 import 'package:final_mwinda_app/pages/blog/post.dart';
 import 'package:http/http.dart' as http;
-import 'package:basic_utils/basic_utils.dart';
 import 'package:final_mwinda_app/widgets/post_items_list.dart';
-
-//import 'package:mwinda_app/app_screens/posts/post_detail.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -172,6 +168,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                   );
+                  return Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator()
+                      ]                
+                    ) 
+                  );
                 } else {                  
                   return Text("${snapshot.error}");
                   /*return Align(
@@ -180,15 +185,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   );*/
                 }
                 // By default, show a loading spinner.
-                return Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      CircularProgressIndicator()
-                    ]                
-                  ) 
-                );
               }
             )
           ),

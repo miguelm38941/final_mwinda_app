@@ -84,20 +84,28 @@ class FeedCard3 extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 40.0),
-            child: Material(
+            child: Material( 
               elevation: 5.0,
               borderRadius: BorderRadius.circular(14.0),
-              child: Container(
-                padding: EdgeInsets.only(top: 20.0, right: 100.0, left: 20.0),
-                height: 150.0,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14.0),
+              child: GestureDetector(
+                onTap:() => Navigator.pushNamed(
+                  context, quizzHomePageRoute,
+                  arguments: rubrique.id
                 ),
-                child: cardContent,
-              ),
-            ),
+                child: Container(
+                  padding: EdgeInsets.only(top: 20.0, right: 100.0, left: 20.0),
+                  height: 150.0,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(14.0),
+                  ),
+                  child: cardContent,
+                ),
+              )
+            )
+              /*              child: 
+            ),*/
           ),
           rubriqueImage
         ],
