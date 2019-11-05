@@ -4,7 +4,7 @@ import 'package:final_mwinda_app/widgets/feed_card1.dart';
 import 'package:final_mwinda_app/widgets/feed_card2.dart';
 import 'package:final_mwinda_app/widgets/feed_card3.dart';
 
-class FeedsPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
@@ -15,7 +15,7 @@ class FeedsPage extends StatelessWidget {
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
-          fontSize: 30.0,
+          fontSize: 40.0,
         ),
       ),
     );

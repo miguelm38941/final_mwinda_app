@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:final_mwinda_app/models/category.dart';
+import 'package:final_mwinda_app/models/quizz_theme.dart';
 import 'package:final_mwinda_app/models/question.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:final_mwinda_app/pages/quizz/quiz_finished.dart';
@@ -7,9 +7,9 @@ import 'package:html_unescape/html_unescape.dart';
 
 class QuizPage extends StatefulWidget {
   final List<Question> questions;
-  final Category category;
+  final QuizzTheme quizzTheme;
 
-  const QuizPage({Key key, @required this.questions, this.category}) : super(key: key);
+  const QuizPage({Key key, @required this.questions, this.quizzTheme}) : super(key: key);
 
   @override
   _QuizPageState createState() => _QuizPageState();
@@ -41,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
         key: _key,
         appBar: AppBar(
-          title: Text(widget.category.name),
+          title: Text(widget.quizzTheme.theme),
           elevation: 0,
         ),
         body: Stack(

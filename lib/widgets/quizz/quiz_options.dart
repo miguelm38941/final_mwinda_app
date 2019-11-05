@@ -1,15 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:final_mwinda_app/models/category.dart';
+import 'package:final_mwinda_app/models/quizz_theme.dart';
 import 'package:final_mwinda_app/models/question.dart';
 import 'package:final_mwinda_app/resources/api_provider.dart';
 import 'package:final_mwinda_app/pages/quizz/error.dart';
 import 'package:final_mwinda_app/pages/quizz/quiz_page.dart';
 
 class QuizOptionsDialog extends StatefulWidget {
-  final Category category;
+  final QuizzTheme quizzTheme;
 
-  const QuizOptionsDialog({Key key, this.category}) : super(key: key);
+  const QuizOptionsDialog({Key key, this.quizzTheme}) : super(key: key);
 
   @override
   _QuizOptionsDialogState createState() => _QuizOptionsDialogState();
@@ -37,7 +37,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               width: double.infinity,
               padding: const EdgeInsets.all(16.0),
               color: Colors.grey.shade200,
-              child: Text(widget.category.name, style: Theme.of(context).textTheme.title.copyWith(),),
+              child: Text(widget.quizzTheme.theme, style: Theme.of(context).textTheme.title.copyWith(),),
             ),
             SizedBox(height: 10.0),
             Text("Select Total Number of Questions"),
@@ -151,7 +151,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
       processing=true;
     });
     try {
-      List<Question> questions =  await getQuestions(widget.category, _noOfQuestions, _difficulty);
+      List<Question> questions =  await getQuestions(widget.quizzTheme, _noOfQuestions, _difficulty);
       Navigator.pop(context);
       if(questions.length < 1) {
         Navigator.of(context).push(MaterialPageRoute(
@@ -160,7 +160,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
         return;
       }
       Navigator.push(context, MaterialPageRoute(
-        builder: (_) => QuizPage(questions: questions, category: widget.category,)
+        builder: (_) => QuizPage(questions: questions, quizzTheme: widget.quizzTheme,)
       ));
     }on SocketException catch (_) {
       Navigator.pushReplacement(context, MaterialPageRoute(

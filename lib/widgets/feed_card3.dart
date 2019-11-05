@@ -44,12 +44,12 @@ class FeedCard3 extends StatelessWidget {
       ),
     );
 
-    final userName = Text(
+    final rubriqueTitle = Text(
       rubrique.title,
       style: TextStyle(
         color: Colors.black,
         fontWeight: FontWeight.bold,
-        fontSize: 16.0,
+        fontSize: 25.0,
       ),
     );
 
@@ -69,7 +69,7 @@ class FeedCard3 extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         postDate,
-        userName,
+        rubriqueTitle,
         SizedBox(
           height: 5.0,
         ),
@@ -78,7 +78,7 @@ class FeedCard3 extends StatelessWidget {
     );
 
     return Container(
-      height: 150.0,
+      height: 155.0, // Hauteur de la carte
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: <Widget>[
@@ -93,8 +93,8 @@ class FeedCard3 extends StatelessWidget {
                   arguments: rubrique.id
                 ),
                 child: Container(
-                  padding: EdgeInsets.only(top: 20.0, right: 100.0, left: 20.0),
-                  height: 150.0,
+                  padding: EdgeInsets.only(top: 20.0, right: 80.0, left: 20.0),
+                  height: 155.0,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Colors.white,

@@ -48,7 +48,7 @@ class FeedCard2 extends StatelessWidget {
       style: TextStyle(
         color: Colors.blueAccent,
         fontWeight: FontWeight.bold,
-        fontSize: 18.0,
+        fontSize: 25.0,
       ),
     );
 
@@ -77,7 +77,7 @@ class FeedCard2 extends StatelessWidget {
     );
 
     return Container(
-      height: 150.0,
+      height: 155.0, // Hauteur de la carte
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: <Widget>[
@@ -91,7 +91,7 @@ class FeedCard2 extends StatelessWidget {
                 ),
                 child: Container(
                   padding: EdgeInsets.only(top: 20.0, left: 100.0),
-                  height: 150.0,
+                  height: 155.0,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Colors.white,

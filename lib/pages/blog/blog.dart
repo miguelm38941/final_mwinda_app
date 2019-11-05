@@ -16,86 +16,16 @@ var COLORS = [
   Colors.deepPurple
 ];
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class BlogPage extends StatefulWidget {
+  BlogPage({Key key, this.title}) : super(key: key);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _BlogPageState createState() => new _BlogPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  var data = [
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/200?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/100?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/150?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/125?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/175?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/225?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/250?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/350?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/275?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/300?random"
-    },
-    {
-      "title": "Hey Flutterers, See what I did with Flutter",
-      "content": "This is just a text description of the item",
-      "color": COLORS[new Random().nextInt(5)],
-      "image": "https://picsum.photos/325?random"
-    }
-  ];
-
-
+class _BlogPageState extends State<BlogPage> {
 
   Future<List<Post>> showPosts() async {
     //debugPrint('000000000000000000');
