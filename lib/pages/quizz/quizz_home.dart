@@ -109,7 +109,7 @@ class QuizzHomePage extends StatelessWidget {
                         return Container(
                           padding: EdgeInsets.only(top:5.0, bottom:5.0, left:16.0, right:16.0),
                           child: InkWell(
-                            onTap:  () => Navigator.pushNamed(context, homePageRoute, arguments: 11),
+                            onTap:  () => _categoryPressed(context, snapshot.data[index]), //() => Navigator.pushNamed(context, homePageRoute, arguments: 11),
                             child: Hero(
                               tag: snapshot.data[index].theme,
                               child: Material(
