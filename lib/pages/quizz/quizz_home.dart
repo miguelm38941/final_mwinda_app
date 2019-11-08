@@ -33,13 +33,13 @@ class QuizzHomePage extends StatelessWidget {
     var response = await http.get('https://www.mwinda-rdc.org/mobileapi/quizz/getall');
     //debugPrint("11111111111");
     var dataDecoded = json.decode(response.body);
-    debugPrint("2222222" + dataDecoded['result'].toString());
+    //debugPrint("2222222" + dataDecoded['result'].toString());
 
     List<QuizzTheme> themes = List();
 
     if (response.statusCode == 200) {
       dataDecoded['result'].forEach((theme){
-      debugPrint("3333333" + theme.toString());
+      //debugPrint("3333333" + theme.toString());
 
         String titre = theme['theme'];
         if(titre.length>25){
