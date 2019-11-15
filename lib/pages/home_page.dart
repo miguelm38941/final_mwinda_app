@@ -3,6 +3,7 @@ import 'package:final_mwinda_app/models/rubrique.dart';
 import 'package:final_mwinda_app/widgets/feed_card1.dart';
 import 'package:final_mwinda_app/widgets/feed_card2.dart';
 import 'package:final_mwinda_app/widgets/feed_card3.dart';
+import 'package:final_mwinda_app/widgets/feed_card4.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 10.0,
                     ),
-                    FeedCard2(
+                    FeedCard4(
                       rubrique: rubriques[2],
                     ),
                     SizedBox(
