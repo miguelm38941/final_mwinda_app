@@ -202,12 +202,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     new Image.asset('assets/images/rubriq_actualites.jpg', fit: BoxFit.fill),                        
                     new Opacity(
-                      opacity: 0.2,
+                      opacity: 0.3,
                       child: new Container(color: COLORS[0]),
                     ),
                     // Title on main baner
                     new Transform.translate(
-                      offset: Offset(0.0, 50.0),
+                      offset: Offset(0.0, 0.0),
                       child: new ListTile(
                         /*leading: new CircleAvatar(
                           child: new Container(

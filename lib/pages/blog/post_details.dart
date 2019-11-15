@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:final_mwinda_app/models/user.dart';
 import 'package:final_mwinda_app/utils/colors.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html_view/flutter_html_view.dart';
+//import 'package:flutter_html_view/flutter_html_view.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:line_icons/line_icons.dart';

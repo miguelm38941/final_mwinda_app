@@ -4,15 +4,16 @@ import 'package:final_mwinda_app/models/rubrique.dart';
 
 class FeedCard2 extends StatelessWidget {
   final Rubrique rubrique;
+  final String routeName;
 
-  const FeedCard2({Key key, this.rubrique}) : super(key: key);
+  const FeedCard2({Key key, this.rubrique, this.routeName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final rubriqueImage = Positioned(
       left: 0,
       top: 15.0,
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, postsPageRoute,
+        onTap: () => Navigator.pushNamed(context, routeName,
             arguments: rubrique.id),
         child: Hero(
           tag: rubrique.title,
@@ -86,7 +87,7 @@ class FeedCard2 extends StatelessWidget {
             child: Material( 
               child: GestureDetector(
                 onTap:() => Navigator.pushNamed(
-                  context, postsPageRoute,
+                  context, routeName,
                   arguments: rubrique.id
                 ),
                 child: Container(

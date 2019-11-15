@@ -1,3 +1,4 @@
+import 'package:final_mwinda_app/pages/centre/provinceView.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/pages/home.dart';
@@ -20,6 +21,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => MyHomePage());
     case singlePostPageRoute:
       return MaterialPageRoute(builder: (context) => PostDetailsPage(postId: settings.arguments));
+    case splashScreenRoute:
+      return MaterialPageRoute(builder: (context) => SplashScreen());
+    case provinceViewRoute:
+      return MaterialPageRoute(builder: (context) => ProvincePage(title: "Provinces",));
     case splashScreenRoute:
       return MaterialPageRoute(builder: (context) => SplashScreen());
     default:

@@ -11,3 +11,8 @@ const String splashScreenRoute = 'splash_screen';
 const String homeViewRoute = 'home';
 const String chatDetailsViewRoute = 'chat_details';
 const String userDetailsViewRoute = 'user_details';
+
+const String provinceViewRoute = 'provinces';
+const String zoneViewRoute = 'zones';
+const String centreViewroute = 'centres';
+const String detailCentreViewRoute = 'centre_details';
