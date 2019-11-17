@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
 
-class FeedCard3 extends StatelessWidget {
+class DirectoryCard extends StatelessWidget {
   final Rubrique rubrique;
 
-  const FeedCard3({Key key, this.rubrique}) : super(key: key);
+  const DirectoryCard({Key key, this.rubrique}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var tag3 = rubrique.title;
     final rubriqueImage = Positioned(
-      right: 0,
+      left: 0,
       top: 15.0,
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, quizzHomePageRoute,
+        onTap: () => Navigator.pushNamed(context, provincesPageRoute,
             arguments: rubrique.id),
         child: Hero(
-          tag: tag3,
+          tag: rubrique.title,
           child: Material(
             elevation: 5.0,
             borderRadius: BorderRadius.circular(14.0),
@@ -47,7 +46,7 @@ class FeedCard3 extends StatelessWidget {
     final rubriqueTitle = Text(
       rubrique.title,
       style: TextStyle(
-        color: Colors.black,
+        color: Colors.blueAccent,
         fontWeight: FontWeight.bold,
         fontSize: 25.0,
       ),
@@ -83,17 +82,15 @@ class FeedCard3 extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 40.0),
+            padding: const EdgeInsets.only(left: 40.0),
             child: Material( 
-              elevation: 5.0,
-              borderRadius: BorderRadius.circular(14.0),
               child: GestureDetector(
                 onTap:() => Navigator.pushNamed(
-                  context, quizzHomePageRoute,
+                  context, provincesPageRoute,
                   arguments: rubrique.id
                 ),
                 child: Container(
-                  padding: EdgeInsets.only(top: 20.0, right: 80.0, left: 20.0),
+                  padding: EdgeInsets.only(top: 20.0, left: 100.0),
                   height: 155.0,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
@@ -102,10 +99,10 @@ class FeedCard3 extends StatelessWidget {
                   ),
                   child: cardContent,
                 ),
-              )
-            )
-              /*              child: 
-            ),*/
+              ),
+              elevation: 5.0,
+              borderRadius: BorderRadius.circular(14.0),
+            ),
           ),
           rubriqueImage
         ],

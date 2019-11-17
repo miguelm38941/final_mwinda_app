@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
 import 'package:final_mwinda_app/widgets/feed_card1.dart';
-import 'package:final_mwinda_app/widgets/feed_card2.dart';
-import 'package:final_mwinda_app/widgets/feed_card3.dart';
-import 'package:final_mwinda_app/widgets/feed_card4.dart';
+import 'package:final_mwinda_app/widgets/blog_card.dart';
+import 'package:final_mwinda_app/widgets/quizz_card.dart';
+import 'package:final_mwinda_app/widgets/directory_card.dart';
+import 'package:final_mwinda_app/widgets/chat_card.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -44,25 +45,25 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 10.0,
                     ),*/
-                    FeedCard2(
+                    BlogCard(
                       rubrique: rubriques[0],
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    FeedCard3(
+                    QuizzCard(
                       rubrique: rubriques[1],
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    FeedCard4(
+                    DirectoryCard(
                       rubrique: rubriques[2],
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    FeedCard3(
+                    ChatCard(
                       rubrique: rubriques[3],
                     ),
                   ],
