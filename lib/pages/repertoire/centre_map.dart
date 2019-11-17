@@ -26,7 +26,7 @@ class centreMapPage extends  StatelessWidget {
         appBar: new AppBar(title: new Text(this.centre.nom)),
         body: new FlutterMap(
             options: new MapOptions(
-                center: new LatLng(lat, long), minZoom: 12.0),
+                center: new LatLng(lat, long), minZoom: 15.0),
             layers: [
               new TileLayerOptions(
                   urlTemplate:

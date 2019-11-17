@@ -65,13 +65,14 @@ class CentreDetailsPage extends StatelessWidget {
     final userImage = Stack(
       children: <Widget>[
         Hero(
-          tag: AvailableImages.woman1['assetPath'],
+          tag: AvailableImages.rubriqActualites['assetPath'],
           child: Container(
             height: 50.0,
             width: deviceWidth,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AvailableImages.woman1['assetPath']),
+                image:
+                    AssetImage(AvailableImages.rubriqActualites['assetPath']),
                 fit: BoxFit.cover,
               ),
             ),
@@ -132,11 +133,11 @@ class CentreDetailsPage extends StatelessWidget {
         Stack(
           children: <Widget>[
             Hero(
-              tag: AvailableImages.woman1['assetPath'],
+              tag: AvailableImages.rubriqChat['assetPath'],
               child: Container(
                 height: 160.0,
                 width: deviceWidth,
-                child: new Image.asset('assets/images/rubriq_actualites.jpg',
+                child: new Image.asset('assets/images/centres.jpg',
                     fit: BoxFit.cover),
               ),
             ),
@@ -224,7 +225,7 @@ class CentreDetailsPage extends StatelessWidget {
                     height: 5.0,
                   ),
                   Text(
-                    "Type",
+                    "Appartenance",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,
@@ -253,14 +254,7 @@ class CentreDetailsPage extends StatelessWidget {
                   SizedBox(
                     height: 3.0,
                   ),
-                  Text(
-                    this.centre.adresse,
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
-                  ),
+                  _buildInfoDisplay(this.centre.adresse),
                   Text(
                     "Contact",
                     style: TextStyle(
@@ -272,35 +266,8 @@ class CentreDetailsPage extends StatelessWidget {
                   SizedBox(
                     height: 3.0,
                   ),
-                  Text(
-                    this.centre.phone,
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top:20.0, bottom:30.0),
-                    padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    width: deviceWidth,
-                    child: new RaisedButton(
-                      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                      color: Colors.lightBlue,
-                      onPressed: () => Navigator.pushNamed(context, mapPageRoute, arguments: this.centre),
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          new Icon(Icons.map, color: Colors.white),
-                          new Text(
-                            'Afficher la localisation',
-                            style: TextStyle(fontSize: 20.0, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
+                  _buildInfoDisplay(this.centre.phone),
+                  _buildMapButton(this.centre, context, deviceWidth)
                 ],
               ),
             ),
@@ -309,6 +276,61 @@ class CentreDetailsPage extends StatelessWidget {
         //hobbies
       ],
     )));
+  }
+
+  Widget _buildInfoDisplay(data) {
+    var display = "- - -";
+    if (data != null) {
+      var display = data;
+    }
+    return Text(
+      display,
+      style: TextStyle(
+        color: Colors.black54,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+      ),
+    );
+  }
+
+  Widget _buildMapButton(centre, context, deviceWidth) {
+    if ((centre.latitude != null) && (centre.longitude != null)) {
+      return Container(
+        margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
+        padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+        width: deviceWidth,
+        child: new RaisedButton(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+          color: Colors.lightBlue,
+          onPressed: () => Navigator.pushNamed(context, mapPageRoute,
+              arguments: this.centre),
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new Icon(Icons.map, color: Colors.white),
+              new Text(
+                'Afficher la localisation',
+                style: TextStyle(fontSize: 20.0, color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return Container(
+        margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
+        padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+        width: deviceWidth,
+        child: Text(
+          'Localisaion bientôt disponible',
+          style: TextStyle(
+            color: Colors.black54,
+            fontWeight: FontWeight.w600,
+            fontSize: 16.0,
+          ),
+        )
+    );
   }
 
   Widget _buildHobbiesCards(String name) {

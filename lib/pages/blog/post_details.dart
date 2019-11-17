@@ -64,13 +64,13 @@ class PostDetailsPage extends StatelessWidget {
     final userImage = Stack(
       children: <Widget>[
         Hero(
-          tag: AvailableImages.woman1['assetPath'],
+          tag: AvailableImages.rubriqChat['assetPath'],
           child: Container(
             height: 350.0,
             width: deviceWidth,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AvailableImages.woman1['assetPath']),
+                image: AssetImage(AvailableImages.rubriqActualites['assetPath']),
                 fit: BoxFit.cover,
               ),
             ),
@@ -136,7 +136,7 @@ class PostDetailsPage extends StatelessWidget {
                       Stack(
                         children: <Widget>[
                           Hero(
-                            tag: AvailableImages.woman1['assetPath'],
+                            tag: AvailableImages.rubriqActualites['assetPath'],
                             child: Container(
                               height: 350.0,
                               width: deviceWidth,
