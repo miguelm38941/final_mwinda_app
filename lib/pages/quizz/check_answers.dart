@@ -1,3 +1,4 @@
+import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -13,7 +14,7 @@ class CheckAnswersPage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Check Answers'),
+        title: Text('Vérifier les réponses'),
         elevation: 0,
       ),
       body: Stack(
@@ -40,10 +41,15 @@ class CheckAnswersPage extends StatelessWidget {
   Widget _buildItem(BuildContext context, int index) {
     if(index == questions.length) {
       return RaisedButton(
-        child: Text("Done"),
-        onPressed: (){
+        padding: EdgeInsets.only(top:10.0, bottom:10.0),
+        child: Text("Terminer", style: TextStyle(fontSize: 22.0),),
+        onPressed: () => Navigator.pushNamed(
+                  context, quizzHomePageRoute,
+                  arguments: 1
+        )
+        /*(){
           Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
-        },
+        },*/
       );
     }
     Question question = questions[index];
@@ -56,8 +62,8 @@ class CheckAnswersPage extends StatelessWidget {
           children: <Widget>[
             Text(HtmlUnescape().convert(question.question), style: TextStyle(
               color: Colors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 16.0
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0
             ),),
             SizedBox(height: 5.0),
             Text(HtmlUnescape().convert("${answers[index]}"), style: TextStyle(
@@ -68,9 +74,9 @@ class CheckAnswersPage extends StatelessWidget {
             SizedBox(height: 5.0),
             correct ? Container(): Text.rich(TextSpan(
               children: [
-                TextSpan(text: "Answer: "),
+                TextSpan(text: "Réponse: "),
                 TextSpan(text: HtmlUnescape().convert(question.correctAnswer) , style: TextStyle(
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.bold
                 ))
               ]
             ),style: TextStyle(

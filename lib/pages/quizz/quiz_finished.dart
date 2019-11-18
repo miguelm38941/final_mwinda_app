@@ -57,7 +57,7 @@ class QuizFinishedPage extends StatelessWidget {
                 ),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text("Total Questions", style: titleStyle),
+                  title: Text("Nombre de questions", style: titleStyle),
                   trailing: Text("${questions.length}", style: trailingStyle),
                 ),
               ),
@@ -68,7 +68,7 @@ class QuizFinishedPage extends StatelessWidget {
                 ),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text("Score", style: titleStyle),
+                  title: Text("Mon score", style: titleStyle),
                   trailing: Text("${correct/questions.length * 100}%", style: trailingStyle),
                 ),
               ),
@@ -79,7 +79,7 @@ class QuizFinishedPage extends StatelessWidget {
                 ),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text("Correct Answers", style: titleStyle),
+                  title: Text("Réponses correctes", style: titleStyle),
                   trailing: Text("$correct/${questions.length}", style: trailingStyle),
                 ),
               ),
@@ -90,7 +90,7 @@ class QuizFinishedPage extends StatelessWidget {
                 ),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text("Incorrect Answers", style: titleStyle),
+                  title: Text("Réponses fausses", style: titleStyle),
                   trailing: Text("${questions.length - correct}/${questions.length}", style: trailingStyle),
                 ),
               ),
@@ -104,7 +104,7 @@ class QuizFinishedPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     color: Theme.of(context).accentColor.withOpacity(0.8),
-                    child: Text("Goto Home"),
+                    child: Text("Retour à la liste"),
                     onPressed: () => Navigator.pop(context),
                   ),
                   RaisedButton(
@@ -113,7 +113,7 @@ class QuizFinishedPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     color: Theme.of(context).primaryColor,
-                    child: Text("Check Answers"),
+                    child: Text("Vérifier les réponses"),
                     onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => CheckAnswersPage(questions: questions, answers: answers,)

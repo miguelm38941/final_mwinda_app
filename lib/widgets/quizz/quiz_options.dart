@@ -1,15 +1,16 @@
 import 'dart:io';
+import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:final_mwinda_app/models/category.dart';
+import 'package:final_mwinda_app/models/quizz_theme.dart';
 import 'package:final_mwinda_app/models/question.dart';
 import 'package:final_mwinda_app/resources/api_provider.dart';
 import 'package:final_mwinda_app/pages/quizz/error.dart';
 import 'package:final_mwinda_app/pages/quizz/quiz_page.dart';
 
 class QuizOptionsDialog extends StatefulWidget {
-  final Category category;
+  final QuizzTheme quizzTheme;
 
-  const QuizOptionsDialog({Key key, this.category}) : super(key: key);
+  const QuizOptionsDialog({Key key, this.quizzTheme}) : super(key: key);
 
   @override
   _QuizOptionsDialogState createState() => _QuizOptionsDialogState();
@@ -37,10 +38,50 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               width: double.infinity,
               padding: const EdgeInsets.all(16.0),
               color: Colors.grey.shade200,
-              child: Text(widget.category.name, style: Theme.of(context).textTheme.title.copyWith(),),
+              child: Text(
+                widget.quizzTheme.theme, 
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.title.copyWith(),
+              ),
             ),
             SizedBox(height: 10.0),
-            Text("Select Total Number of Questions"),
+            SizedBox(
+              child: MaterialButton(
+                child: Text(
+                  'Go',
+                  style: new TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                padding: EdgeInsets.all(20.0),
+                color: Colors.red,
+                textColor: Colors.white,
+                highlightColor: Colors.redAccent,
+                splashColor: Colors.redAccent,
+                height: 120.0,
+                elevation: 2,
+                highlightElevation: 2,
+                shape: CircleBorder(
+                  side: BorderSide.none,
+                ),
+                onPressed: _startQuiz,
+              ),
+              /*child: new InkWell(// this is the one you are looking for..........
+                onTap: () => homePageRoute,
+        child: ClipOval(
+          child: Container(
+            color: Colors.blue,
+            height: 120.0, // height of the button
+            width: 120.0, // width of the button
+            child: Center(child: Text('A Circular Button', style: ,)),
+          ),
+        ),
+              ),*/
+            ),
+
+            /*Text("Select Total Number of Questions"),
             SizedBox(
               width: double.infinity,
               child: Wrap(
@@ -83,8 +124,8 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
                   
                 ],
               ),
-            ),
-            SizedBox(height: 20.0),
+            ),*/
+            /*SizedBox(height: 20.0),
             Text("Select Difficulty"),
             SizedBox(
               width: double.infinity,
@@ -122,12 +163,12 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
                   
                 ],
               ),
-            ),
-            SizedBox(height: 20.0),
+            ),*/
+            /*SizedBox(height: 20.0),
             processing ? CircularProgressIndicator() : RaisedButton(
               child: Text("Start Quiz"),
               onPressed: _startQuiz,
-            ),
+            ),*/
             SizedBox(height: 20.0),
           ],
         ),
@@ -151,7 +192,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
       processing=true;
     });
     try {
-      List<Question> questions =  await getQuestions(widget.category, _noOfQuestions, _difficulty);
+      List<Question> questions =  await getQuestions(widget.quizzTheme, _noOfQuestions, _difficulty);
       Navigator.pop(context);
       if(questions.length < 1) {
         Navigator.of(context).push(MaterialPageRoute(
@@ -160,7 +201,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
         return;
       }
       Navigator.push(context, MaterialPageRoute(
-        builder: (_) => QuizPage(questions: questions, category: widget.category,)
+        builder: (_) => QuizPage(questions: questions, quizzTheme: widget.quizzTheme,)
       ));
     }on SocketException catch (_) {
       Navigator.pushReplacement(context, MaterialPageRoute(
