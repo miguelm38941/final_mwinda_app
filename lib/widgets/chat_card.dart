@@ -89,10 +89,16 @@ class ChatCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(14.0),
               child: GestureDetector(
                 /* INSERT CHAT LINK */
-                onTap:() => Navigator.pushNamed(
+                onTap:(){
+
+               /*   Navigator.pushNamed(
                   context, quizzHomePageRoute,
                   arguments: rubrique.id
-                ),
+                );*/
+
+               Navigator.of(context).pushNamed('login');
+
+                  },
                 /* END OF INSERT CHAT LINK */
                 child: Container(
                   padding: EdgeInsets.only(top: 20.0, right: 80.0, left: 20.0),
