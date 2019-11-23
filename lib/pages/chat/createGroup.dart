@@ -15,6 +15,7 @@ class _CreateGroupState extends State<CreateGroup> {
   TextEditingController _name = new TextEditingController();
   TextEditingController _number = new TextEditingController();
   List<String> users = new List();
+  List<String> usersName = new List();
   String admin ="";
   bool isloading=false;
 
@@ -29,6 +30,7 @@ class _CreateGroupState extends State<CreateGroup> {
     }else
       {
         users=[...Global.users];
+        usersName=[...Global.username];
       }
  //  Fluttertoast.showToast(msg:  Global.EditGroup==true?"Bhai edit krna hai":"Create Karna");
   }
@@ -54,15 +56,16 @@ class _CreateGroupState extends State<CreateGroup> {
                  {
                    Fluttertoast.showToast(msg: /*"User Already Added"*/"Déjà inscrit, se connecter ici");
                  }else {
-                 bool isAvailable = await AvailableUser(
+                 DocumentSnapshot documentSnapshot = await GetUserDetails(
                      context, number: _number.text.toString(), answer: true);
 
-                 print(isAvailable);
-                 if (isAvailable) {
+
+                 if (documentSnapshot!=null) {
                    users.add(_number.text.toString());
+                   usersName.add(documentSnapshot['name']);
 
                    if(Global.EditGroup==true && admin==Global.Uid) {
-                     UpdateGroup(context, users: users,
+                     UpdateGroup(context, users: users,usersName: usersName,
                          number: _number.text.toString(),
                          name: _name.text.toString());
                    }
@@ -115,15 +118,16 @@ class _CreateGroupState extends State<CreateGroup> {
                       {
                         Fluttertoast.showToast(msg: /*"User Already Added"*/"Déjà inscrit, se connecter ici");
                       }else {
-                        bool isAvailable = await AvailableUser(
+                        DocumentSnapshot documentSnapshot = await GetUserDetails(
                             context, number: _number.text.toString(), answer: true);
 
-                        print(isAvailable);
-                        if (isAvailable) {
+                        print(documentSnapshot);
+                        if (documentSnapshot!=null) {
                           users.add(_number.text.toString());
+                          usersName.add(documentSnapshot['name']);
 
                           if(Global.EditGroup==true && admin==Global.Uid) {
-                            UpdateGroup(context, users: users,
+                            UpdateGroup(context, users: users,usersName: usersName,
                                 number: _number.text.toString(),
                                 name: _name.text.toString());
                           }
@@ -160,15 +164,16 @@ class _CreateGroupState extends State<CreateGroup> {
 
 
 
-                ListTile(title: Text(users[i]),trailing:
+                ListTile(title: Text(usersName[i]),subtitle:Text(users[i]) ,trailing:
 
             Global.EditGroup==false || Global.Uid==admin?
                 GestureDetector(onTap: (){
                   users.removeAt(i);
+                  usersName.removeAt(i);
 
                   if(Global.EditGroup==false &&Global.Uid==admin)
                     {
-                      UpdateGroupAfterDelete(context,name: _name.text,number: users[i],users: users);
+                      UpdateGroupAfterDelete(context,name: _name.text,number: users[i],users: users,usersName: usersName);
                     }
 
 
@@ -194,7 +199,7 @@ class _CreateGroupState extends State<CreateGroup> {
                 {
                   Fluttertoast.showToast(msg: "Please Add Users to Group");
                 }else{
-              AddGroup(context,name:_name.text.toString(),users: users );
+              AddGroup(context,name:_name.text.toString(),users: users ,usersName: usersName);
             }
 
             isloading=false;
@@ -231,8 +236,10 @@ class _CreateGroupState extends State<CreateGroup> {
       admin=ds['admin'];
 
     List<String> oldUsers= ds['users'].cast<String>();
+      List<String> oldUsersName= ds['usersName'].cast<String>();
 
     users=[...oldUsers];
+      usersName=[...oldUsersName];
 
 setState((){});
 
@@ -247,7 +254,7 @@ setState((){});
 
 
 
-  UpdateGroup(context,{String name,List<String> users,String number}) async {
+  UpdateGroup(context,{String name,List<String> users,List<String> usersName,String number}) async {
 
 
    await Firestore.instance
@@ -259,6 +266,7 @@ setState((){});
       'type':'group',
       'name':name,
       'users':users,
+     'usersName':usersName,
       'admin':Global.Uid
     });
 
@@ -272,6 +280,7 @@ setState((){});
           .document(Global.currentChat)
           .updateData({
         'users':users,
+        'usersName':usersName,
         'admin':Global.Uid
       });
     }
@@ -279,7 +288,7 @@ setState((){});
   }
 
 
-  UpdateGroupAfterDelete(context,{String name,List<String> users,String number}) async {
+  UpdateGroupAfterDelete(context,{String name,List<String> users,List<String> usersName,String number}) async {
 
 
 
@@ -305,6 +314,7 @@ setState((){});
           .document(Global.currentChat)
           .updateData({
         'users':users,
+        'usersName':usersName,
         'admin':admin
       });
     }

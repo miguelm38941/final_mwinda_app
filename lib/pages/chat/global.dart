@@ -145,6 +145,8 @@ AvailableUser(context, {String number, bool answer}) async {
   return reg;
 }
 
+
+
 AddChatUser(context, {String number,DocumentSnapshot documentSnapshot}) async {
   bool reg;
 
@@ -197,7 +199,7 @@ AddChatUser(context, {String number,DocumentSnapshot documentSnapshot}) async {
 }
 
 
-AddGroup(context,{String name,List<String> users}) async {
+AddGroup(context,{String name,List<String> users,List<String> usersName}) async {
 
 
   final postRef =   await Firestore.instance
@@ -208,6 +210,7 @@ AddGroup(context,{String name,List<String> users}) async {
     'type':'text',
     'name':name,
     'users':users,
+    'usersName':usersName,
     'admin':Global.Uid,
     'groupchat':true,
     'msg':"Group Created",
@@ -220,6 +223,7 @@ AddGroup(context,{String name,List<String> users}) async {
       .collection(postRef.documentID);
 
 users.add(Global.Uid);
+usersName.add(Global.Username);
 
   for(int i =0;i<users.length;i++)
     {
@@ -232,7 +236,9 @@ users.add(Global.Uid);
         'type':'text',
         'name':name,
         'users':users,
+        'usersName':usersName,
         'admin':Global.Uid,
+
         'groupchat':true
         ,
         'msg':"Group Created",
@@ -303,4 +309,30 @@ EnterGroupData({String type, String Data}) async {
 
 
 
+}
+
+
+GetUserDetails(context, {String number, bool answer}) async {
+  bool reg;
+  DocumentSnapshot documentSnapshot;
+  await Firestore.instance
+      .collection('users')
+      .document(number)
+      .get()
+      .then((ds) {
+    documentSnapshot=ds;
+    if (ds.data == null) {
+      reg = false;
+    } else {
+      reg = true;
+      print("Adding awsd");
+      print(answer);
+      if (answer == null) {
+        print("Adding aws");
+        AddChatUser(context, number: number,documentSnapshot: documentSnapshot);
+      }
+    }
+  });
+
+  return documentSnapshot;
 }

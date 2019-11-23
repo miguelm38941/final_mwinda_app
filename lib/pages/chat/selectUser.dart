@@ -48,7 +48,6 @@ class _SelectUserState extends State<SelectUser> {
                                 {
                                   users.add(document['phone']);
                                   names.add(document['name']);
-
                                 }
 
                             setState(() {
