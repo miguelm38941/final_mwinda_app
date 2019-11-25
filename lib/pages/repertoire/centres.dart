@@ -59,19 +59,23 @@ class CentresPage extends StatelessWidget {
             clipper: WaveClipperTwo(),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor
+                color: Theme.of(context).primaryColor,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/rubriq_centres.jpg'),
+                  fit: BoxFit.cover
+                ),
               ),
               height: 200,
             ),
           ),
           Container(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 58.0),
                   child: Text(
                     "Les centres", 
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       fontSize: 40.0
                     ),
                   ),

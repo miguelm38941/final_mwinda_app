@@ -55,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor
                 ),
-                height: 200,
+                height: 300,
               ),
             ),
             Padding(
@@ -114,6 +114,9 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _nextSubmit() {
+    
+      AudioCache player;
+      player = new AudioCache();
 
     if(_answers[_currentIndex] == null) {
       _key.currentState.showSnackBar(SnackBar(
@@ -122,21 +125,17 @@ class _QuizPageState extends State<QuizPage> {
       return;
     }
     if(_currentIndex < (widget.questions.length - 1)){
-    
-      AudioCache player;
-      player = new AudioCache();
+
       const alarmAudioPath = "audio/next.wav";
       player.play(alarmAudioPath);
 
       setState(() {
           _currentIndex++;
       });
-      
+
     } else {
 
-      AudioCache player;
-      player = new AudioCache();
-      const alarmAudioPath = "audio/fanfare.wav";
+      const alarmAudioPath = "audio/fanfare.mp3";
       player.play(alarmAudioPath);
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(

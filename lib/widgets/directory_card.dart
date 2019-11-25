@@ -58,17 +58,8 @@ class DirectoryCard extends StatelessWidget {
       child: new Opacity(
         opacity: 0.5,
         child: InkWell(
-          /*onTap: () => Navigator.pushNamed(context, provincesPageRoute,
-              arguments: rubrique.id),*/
-          onTap: () => Navigator.push(
-            context,               
-            PageTransition(
-              type: PageTransitionType.size, 
-              alignment: Alignment.bottomCenter, 
-              duration: Duration(milliseconds: 1000),
-              child: ProvincesPage()
-            )
-          ),                    
+          onTap: () => Navigator.pushNamed(context, provincesPageRoute,
+              arguments: rubrique.id),
           child: Hero(
             tag: rubrique.title,
             child: Material(
@@ -109,17 +100,8 @@ class DirectoryCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 0),
             child: Material(
               child: GestureDetector(
-                /*onTap: () => Navigator.pushNamed(context, provincesPageRoute,
-                    arguments: rubrique.id),*/
-                onTap: () => Navigator.push(
-                  context,               
-                  PageTransition(
-                    type: PageTransitionType.size, 
-                    alignment: Alignment.bottomCenter, 
-                    duration: Duration(milliseconds: 1000),
-                    child: ProvincesPage()
-                  )
-                ),                    
+                onTap: () => Navigator.pushNamed(context, provincesPageRoute,
+                    arguments: rubrique.id),                   
                 child: FlipCard(
                   key: cardKey,
                   flipOnTouch: false,

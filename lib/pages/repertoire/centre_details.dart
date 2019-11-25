@@ -40,7 +40,7 @@ class CentreDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final User user = users.singleWhere((user) => user.id == 120);
-    debugPrint('THEID ' + this.centre.toString());
+    debugPrint('THEID ' + this.centre.adresse);
     // final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
@@ -135,9 +135,9 @@ class CentreDetailsPage extends StatelessWidget {
             Hero(
               tag: AvailableImages.rubriqChat['assetPath'],
               child: Container(
-                height: 160.0,
+                height: 250.0,
                 width: deviceWidth,
-                child: new Image.asset('assets/images/centres.jpg',
+                child: new Image.asset('assets/images/rubriq_centres.jpg',
                     fit: BoxFit.cover),
               ),
             ),
@@ -161,7 +161,7 @@ class CentreDetailsPage extends StatelessWidget {
                 SizedBox(
                   width: 20.0,
                 ),
-                Container(
+                /*Container(
                   padding: EdgeInsets.symmetric(horizontal: 3.0),
                   height: 30.0,
                   width: 60.0,
@@ -188,7 +188,7 @@ class CentreDetailsPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
+                )*/
               ],
             )),
         // Display post category
@@ -236,7 +236,7 @@ class CentreDetailsPage extends StatelessWidget {
                     height: 3.0,
                   ),
                   Text(
-                    this.centre.appartenance,
+                    StringUtils.capitalize(this.centre.appartenance),
                     style: TextStyle(
                       color: Colors.black54,
                       fontWeight: FontWeight.w600,
@@ -279,10 +279,8 @@ class CentreDetailsPage extends StatelessWidget {
   }
 
   Widget _buildInfoDisplay(data) {
-    var display = "- - -";
-    if (data != null) {
-      var display = data;
-    }
+    var display = (data != null)  ? data : "- - - ";
+    
     return Text(
       display,
       style: TextStyle(

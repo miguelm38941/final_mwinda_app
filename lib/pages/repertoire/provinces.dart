@@ -55,7 +55,11 @@ class ProvincesPage extends StatelessWidget {
             clipper: WaveClipperTwo(),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor
+                color: Theme.of(context).primaryColor,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/women_educ.jpg'),
+                  fit: BoxFit.cover
+                ),
               ),
               height: 200,
             ),
@@ -67,7 +71,7 @@ class ProvincesPage extends StatelessWidget {
                     "Les provinces", 
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       fontSize: 40.0
                     ),
                   ),

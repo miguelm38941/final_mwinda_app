@@ -16,6 +16,7 @@ import 'package:final_mwinda_app/pages/repertoire/centres.dart';
 import 'package:final_mwinda_app/pages/repertoire/centre_details.dart';
 import 'package:final_mwinda_app/pages/repertoire/zones.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:page_transition/page_transition.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
 
@@ -28,10 +29,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       const alarmAudioPath = "audio/start_game.wav";
       player.play(alarmAudioPath);
       return MaterialPageRoute(builder: (context) => QuizzHomePage());
-    case quizzQuestionPageRoute:
-      const alarmAudioPath = "audio/start_game.wav";
-      player.play(alarmAudioPath);
-      return MaterialPageRoute(builder: (context) => QuizPage(questions: settings.arguments, quizzTheme: settings.arguments,));
     case homePageRoute:
       return MaterialPageRoute(builder: (context) => HomePage());
     case postsPageRoute:
@@ -41,15 +38,30 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case singlePostPageRoute:
       return MaterialPageRoute(builder: (context) => PostDetailsPage(postId: settings.arguments));
     case provincesPageRoute:
-      return MaterialPageRoute(builder: (context) => ProvincesPage());
+      return PageTransition( type: PageTransitionType.scale, duration: Duration(milliseconds: 300),
+              child: ProvincesPage()
+            );
+      //return MaterialPageRoute(builder: (context) => ProvincesPage());
     case zonesPageRoute:
-      return MaterialPageRoute(builder: (context) => ZonesPage(provinceId: settings.arguments));
+      return PageTransition( type: PageTransitionType.rightToLeftWithFade, duration: Duration(milliseconds: 300),
+              child: ZonesPage(provinceId: settings.arguments)
+            );
+      //return MaterialPageRoute(builder: (context) => ZonesPage(provinceId: settings.arguments));
     case centresPageRoute:
-      return MaterialPageRoute(builder: (context) => CentresPage(zoneId: settings.arguments));
+      return PageTransition( type: PageTransitionType.rightToLeftWithFade, duration: Duration(milliseconds: 300),
+              child: CentresPage(zoneId: settings.arguments)
+            );
+      //return MaterialPageRoute(builder: (context) => CentresPage(zoneId: settings.arguments));
     case centreDetailPageRoute:
+      return PageTransition( type: PageTransitionType.rightToLeftWithFade, duration: Duration(milliseconds: 300),
+              child: CentreDetailsPage(centre: settings.arguments)
+            );
       return MaterialPageRoute(builder: (context) => CentreDetailsPage(centre: settings.arguments));
     case mapViewRoute:
-      return MaterialPageRoute(builder: (context) => MapScreen(centre: settings.arguments));
+      return PageTransition( type: PageTransitionType.scale, alignment: Alignment.centerLeft, duration: Duration(milliseconds: 500),
+              child: CentreDetailsPage(centre: settings.arguments)
+            );
+      //return MaterialPageRoute(builder: (context) => MapScreen(centre: settings.arguments));
     case mapPageRoute:
       return MaterialPageRoute(builder: (context) => centreMapPage(centre: settings.arguments));
     default:
