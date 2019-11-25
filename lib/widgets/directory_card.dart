@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:final_mwinda_app/pages/repertoire/provinces.dart';
 
 class DirectoryCard extends StatelessWidget {
   final Rubrique rubrique;
@@ -56,8 +58,17 @@ class DirectoryCard extends StatelessWidget {
       child: new Opacity(
         opacity: 0.5,
         child: InkWell(
-          onTap: () => Navigator.pushNamed(context, provincesPageRoute,
-              arguments: rubrique.id),
+          /*onTap: () => Navigator.pushNamed(context, provincesPageRoute,
+              arguments: rubrique.id),*/
+          onTap: () => Navigator.push(
+            context,               
+            PageTransition(
+              type: PageTransitionType.scale, 
+              alignment: Alignment.bottomCenter, 
+              duration: Duration(milliseconds: 1000),
+              child: ProvincesPage()
+            )
+          ),                    
           child: Hero(
             tag: rubrique.title,
             child: Material(
@@ -98,8 +109,17 @@ class DirectoryCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 0),
             child: Material(
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, provincesPageRoute,
-                    arguments: rubrique.id),
+                /*onTap: () => Navigator.pushNamed(context, provincesPageRoute,
+                    arguments: rubrique.id),*/
+                onTap: () => Navigator.push(
+                  context,               
+                  PageTransition(
+                    type: PageTransitionType.size, 
+                    alignment: Alignment.bottomCenter, 
+                    duration: Duration(milliseconds: 1000),
+                    child: ProvincesPage()
+                  )
+                ),                    
                 child: FlipCard(
                   key: cardKey,
                   flipOnTouch: false,

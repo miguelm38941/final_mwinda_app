@@ -1,6 +1,8 @@
+import 'package:final_mwinda_app/pages/chat/login.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ChatCard extends StatelessWidget {
   final Rubrique rubrique;
@@ -50,7 +52,7 @@ class ChatCard extends StatelessWidget {
       style: TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.bold,
-        fontSize: 35.0,
+        fontSize: 25.0,
       ),
     );
 
@@ -94,7 +96,16 @@ class ChatCard extends StatelessWidget {
                   context, quizzHomePageRoute,
                   arguments: rubrique.id
                 ),*/
-                onTap:() => Navigator.of(context).pushNamed('login'),
+                onTap: () => Navigator.push(
+                  context,               
+                  PageTransition(
+                    type: PageTransitionType.scale, 
+                    alignment: Alignment.bottomCenter, 
+                    duration: Duration(milliseconds: 1000),
+                    child: Login()
+                  )
+                ),                    
+                //onTap:() => Navigator.of(context).pushNamed('login'),
                 /* END OF INSERT CHAT LINK */
                 child: Container(
                   padding: EdgeInsets.only(top: 20.0, right: 80.0, left: 20.0),

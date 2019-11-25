@@ -15,7 +15,6 @@ import 'package:final_mwinda_app/pages/repertoire/centres.dart';
 import 'package:final_mwinda_app/pages/repertoire/centre_details.dart';
 import 'package:final_mwinda_app/pages/repertoire/zones.dart';
 
-
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case splashScreenRoute:

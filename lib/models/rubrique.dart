@@ -4,7 +4,7 @@ import 'package:final_mwinda_app/utils/utils.dart';
 class Rubrique {
   int id;
   String title;
-  String description = '';
+  String description = 'Discussion';
   String bannerImg = AvailableImages.postBanner['assetPath'];
   String image;
 

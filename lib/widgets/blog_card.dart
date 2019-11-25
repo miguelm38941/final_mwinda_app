@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:final_mwinda_app/pages/blog/blog.dart';
+
 
 class BlogCard extends StatelessWidget {
   final Rubrique rubrique;
@@ -56,8 +59,17 @@ class BlogCard extends StatelessWidget {
       child: new Opacity(
         opacity: 0.5,
         child: InkWell(
-          onTap: () => Navigator.pushNamed(context, postsPageRoute,
-              arguments: rubrique.id),
+          /*onTap: () => Navigator.pushNamed(context, postsPageRoute,
+              arguments: rubrique.id),*/
+          onTap: () => Navigator.push(
+            context,               
+            PageTransition(
+              type: PageTransitionType.scale, 
+              alignment: Alignment.bottomCenter, 
+              duration: Duration(milliseconds: 1000),
+              child: BlogPage()
+            )
+          ),                    
           child: Hero(
             tag: rubrique.title,
             child: Material(
@@ -98,8 +110,17 @@ class BlogCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 0),
             child: Material(
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, postsPageRoute,
-                    arguments: rubrique.id),
+                //onTap: () => Navigator.pushNamed(context, postsPageRoute,
+                    //arguments: rubrique.id),
+                onTap: () => Navigator.push(
+                  context, 
+                  PageTransition(
+                    type: PageTransitionType.scale, 
+                    alignment: Alignment.bottomCenter, 
+                    duration: Duration(milliseconds: 1000),
+                    child: BlogPage()
+                  )
+                ),
                 child: FlipCard(
                   key: cardKey,
                   flipOnTouch: false,
@@ -121,7 +142,7 @@ class BlogCard extends StatelessWidget {
                       ),
 
                     )
-                    
+
                   ),
                   back: Container(
                     color: Colors.lightBlue[800],
