@@ -63,7 +63,7 @@ class DirectoryCard extends StatelessWidget {
           onTap: () => Navigator.push(
             context,               
             PageTransition(
-              type: PageTransitionType.scale, 
+              type: PageTransitionType.size, 
               alignment: Alignment.bottomCenter, 
               duration: Duration(milliseconds: 1000),
               child: ProvincesPage()

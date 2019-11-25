@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/models/quizz_theme.dart';
@@ -188,15 +189,22 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
   }
 
   void _startQuiz() async {
+
+    AudioCache player;
+    player = new AudioCache();
+    const alarmAudioPath = "audio/next.wav";
+    player.play(alarmAudioPath);
+
     setState(() {
       processing=true;
     });
     try {
+
       List<Question> questions =  await getQuestions(widget.quizzTheme, _noOfQuestions, _difficulty);
       Navigator.pop(context);
       if(questions.length < 1) {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => ErrorPage(message: "There are not enough questions in the category, with the options you selected.",)
+          builder: (_) => ErrorPage(message: "Ce thème ne contient pas de question.",)
         ));
         return;
       }
@@ -205,7 +213,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
       ));
     }on SocketException catch (_) {
       Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (_) => ErrorPage(message: "Can't reach the servers, \n Please check your internet connection.",)
+        builder: (_) => ErrorPage(message: "Serveurs injoignable, \n Vérifiez votre connection.",)
       ));
     } catch(e){
       print(e.message);

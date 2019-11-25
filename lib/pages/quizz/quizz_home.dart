@@ -64,19 +64,29 @@ class QuizzHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mwinda Quizz'),
-        elevation: 0,
+      backgroundColor: Colors.lightBlue,
+      appBar: new AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 3.0,
+        title: new Text(
+          "Mwinda Quizz",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Stack(
         children: <Widget>[
           ClipPath(
             clipper: WaveClipperTwo(),
             child: Container(
+              margin: EdgeInsets.only(bottom: 20.0),
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor
+                color: Theme.of(context).primaryColor,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/children_educ.jpg'),
+                  fit: BoxFit.fitHeight
+                ),
               ),
-              height: 200,
+              height: 600,
             ),
           ),
           Container(

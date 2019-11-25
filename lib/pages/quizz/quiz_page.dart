@@ -1,3 +1,4 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/models/quizz_theme.dart';
 import 'package:final_mwinda_app/models/question.dart';
@@ -36,7 +37,9 @@ class _QuizPageState extends State<QuizPage> {
       options.shuffle();
     }
     
-    return WillPopScope(
+        return WillPopScope(
+    
+
       onWillPop: _onWillPop,
       child: Scaffold(
         key: _key,
@@ -111,17 +114,31 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _nextSubmit() {
+
     if(_answers[_currentIndex] == null) {
       _key.currentState.showSnackBar(SnackBar(
-        content: Text("You must select an answer to continue."),
+        content: Text("Choisissez votre réponse avant de continuer."),
       ));
       return;
     }
     if(_currentIndex < (widget.questions.length - 1)){
+    
+      AudioCache player;
+      player = new AudioCache();
+      const alarmAudioPath = "audio/next.wav";
+      player.play(alarmAudioPath);
+
       setState(() {
           _currentIndex++;
       });
+      
     } else {
+
+      AudioCache player;
+      player = new AudioCache();
+      const alarmAudioPath = "audio/fanfare.wav";
+      player.play(alarmAudioPath);
+
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (_) => QuizFinishedPage(questions: widget.questions, answers: _answers)
       ));

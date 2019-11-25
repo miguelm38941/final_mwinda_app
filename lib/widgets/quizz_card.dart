@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:soundpool/soundpool.dart';
 
 class QuizzCard extends StatelessWidget {
   final Rubrique rubrique;

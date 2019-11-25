@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/pages/home_page.dart';
 import 'package:final_mwinda_app/pages/quizz/quizz_home.dart';
+import 'package:final_mwinda_app/pages/quizz/quiz_page.dart';
 import 'package:final_mwinda_app/pages/splash_screen.dart';
 import 'package:final_mwinda_app/pages/blog/blog.dart';
 import 'package:final_mwinda_app/pages/blog/post_details.dart';
@@ -14,13 +15,23 @@ import 'package:final_mwinda_app/models/province.dart';
 import 'package:final_mwinda_app/pages/repertoire/centres.dart';
 import 'package:final_mwinda_app/pages/repertoire/centre_details.dart';
 import 'package:final_mwinda_app/pages/repertoire/zones.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
+
+  AudioCache player = new AudioCache();
+
   switch (settings.name) {
     case splashScreenRoute:
       return MaterialPageRoute(builder: (context) => SplashScreen());
     case quizzHomePageRoute:
+      const alarmAudioPath = "audio/start_game.wav";
+      player.play(alarmAudioPath);
       return MaterialPageRoute(builder: (context) => QuizzHomePage());
+    case quizzQuestionPageRoute:
+      const alarmAudioPath = "audio/start_game.wav";
+      player.play(alarmAudioPath);
+      return MaterialPageRoute(builder: (context) => QuizPage(questions: settings.arguments, quizzTheme: settings.arguments,));
     case homePageRoute:
       return MaterialPageRoute(builder: (context) => HomePage());
     case postsPageRoute:

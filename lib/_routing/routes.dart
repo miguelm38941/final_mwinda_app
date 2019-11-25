@@ -8,6 +8,7 @@ const String homePageRoute = 'home_page';
 const String postsPageRoute = 'blog';
 const String singlePostPageRoute = 'post_details';
 const String quizzHomePageRoute = 'quizzHome';
+const String quizzQuestionPageRoute = 'quizz_page';
 const String splashScreenRoute = 'splash_screen';
 
 const String provincesPageRoute = 'provinces';
