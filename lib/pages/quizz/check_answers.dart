@@ -76,7 +76,7 @@ class CheckAnswersPage extends StatelessWidget {
               children: [
                 TextSpan(text: "Réponse: "),
                 TextSpan(text: HtmlUnescape().convert(question.correctAnswer) , style: TextStyle(
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold, color: Colors.green
                 ))
               ]
             ),style: TextStyle(

@@ -9,7 +9,7 @@ const String baseUrl = "https://www.mwinda-rdc.org";
 
 Future<List<Question>> getQuestions(QuizzTheme quizzTheme, int total, String difficulty) async {
   //String url = "$baseUrl?amount=$total&category=${quizzTheme.id}";
-  String url = "$baseUrl/mobileapi/quizz/questions_set/11";
+  String url = "$baseUrl/mobileapi/quizz/questions_set/" + quizzTheme.id.toString();
   debugPrint(url);
   /*if(difficulty != null) {
     url = "$url&difficulty=$difficulty";

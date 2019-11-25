@@ -32,7 +32,7 @@ class AvailableImages {
   };
 
   static const postBanner = {
-    'assetImage' : AssetImage('assets/images/post_banner.jpg'),
+    'assetImage' : AssetImage('assets/images/rubriq_actualites.jpg'),
     'assetPath' : 'assets/images/post_banner.jpg',
   };
 

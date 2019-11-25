@@ -1,5 +1,7 @@
 import 'package:final_mwinda_app/pages/repertoire/centre_map.dart';
 import 'package:final_mwinda_app/pages/repertoire/map_screen.dart';
+import 'package:final_mwinda_app/utils/sizeRoute.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/_routing/routes.dart';
 import 'package:final_mwinda_app/pages/home_page.dart';
@@ -23,7 +25,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case homePageRoute:
       return MaterialPageRoute(builder: (context) => HomePage());
     case postsPageRoute:
-      return MaterialPageRoute(builder: (context) => BlogPage());
+      return SizeRoute(page: BlogPage());
+      //return CupertinoPageRoute(builder: (context) => BlogPage());
+      //return MaterialPageRoute(builder: (context) => BlogPage());
     case singlePostPageRoute:
       return MaterialPageRoute(builder: (context) => PostDetailsPage(postId: settings.arguments));
     case provincesPageRoute:

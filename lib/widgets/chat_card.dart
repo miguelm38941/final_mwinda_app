@@ -13,8 +13,9 @@ class ChatCard extends StatelessWidget {
       right: 0,
       top: 15.0,
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, quizzHomePageRoute,
-            arguments: rubrique.id),
+        /*onTap: () => Navigator.pushNamed(context, quizzHomePageRoute,
+            arguments: rubrique.id),*/
+        onTap:() => Navigator.of(context).pushNamed('login'),
         child: Hero(
           tag: tag3,
           child: Material(
@@ -39,7 +40,7 @@ class ChatCard extends StatelessWidget {
     final postDate = Text(
       rubrique.title,
       style: TextStyle(
-        color: Colors.grey.withOpacity(0.6),
+        color: Colors.grey.withOpacity(0.0),
         fontWeight: FontWeight.bold,
       ),
     );
@@ -47,9 +48,9 @@ class ChatCard extends StatelessWidget {
     final rubriqueTitle = Text(
       rubrique.title,
       style: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontWeight: FontWeight.bold,
-        fontSize: 25.0,
+        fontSize: 35.0,
       ),
     );
 
@@ -58,7 +59,7 @@ class ChatCard extends StatelessWidget {
       child: Text(
         rubrique.description,
         style: TextStyle(
-          color: Colors.grey,
+          color: Colors.white,
           fontWeight: FontWeight.w600,
           fontSize: 14.0,
         ),
@@ -89,23 +90,18 @@ class ChatCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(14.0),
               child: GestureDetector(
                 /* INSERT CHAT LINK */
-                onTap:(){
-
-               /*   Navigator.pushNamed(
+                /*onTap:() => Navigator.pushNamed(
                   context, quizzHomePageRoute,
                   arguments: rubrique.id
-                );*/
-
-               Navigator.of(context).pushNamed('login');
-
-                  },
+                ),*/
+                onTap:() => Navigator.of(context).pushNamed('login'),
                 /* END OF INSERT CHAT LINK */
                 child: Container(
                   padding: EdgeInsets.only(top: 20.0, right: 80.0, left: 20.0),
                   height: 155.0,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.lightBlue[800],
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                   child: cardContent,

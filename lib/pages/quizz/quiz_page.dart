@@ -17,8 +17,8 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   final TextStyle _questionStyle = TextStyle(
-    fontSize: 18.0,
-    fontWeight: FontWeight.w500,
+    fontSize: 22.0,
+    fontWeight: FontWeight.bold,
     color: Colors.white
   );
 
@@ -96,7 +96,7 @@ class _QuizPageState extends State<QuizPage> {
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       child: RaisedButton(
-                        child: Text( _currentIndex == (widget.questions.length - 1) ? "Submit" : "Next"),
+                        child: Text( _currentIndex == (widget.questions.length - 1) ? "Soumettre" : "Suivant"),
                         onPressed: _nextSubmit,
                       ),
                     ),
@@ -133,17 +133,17 @@ class _QuizPageState extends State<QuizPage> {
       context: context,
       builder: (_) {
         return AlertDialog(
-          content: Text("Are you sure you want to quit the quiz? All your progress will be lost."),
-          title: Text("Warning!"),
+          content: Text("Voulez-vous quitter le quizz ?"),
+          title: Text("Attention!"),
           actions: <Widget>[
             FlatButton(
-              child: Text("Yes"),
+              child: Text("Oui"),
               onPressed: (){
                 Navigator.pop(context,true);
               },
             ),
             FlatButton(
-              child: Text("No"),
+              child: Text("Non"),
               onPressed: (){
                 Navigator.pop(context,false);
               },
