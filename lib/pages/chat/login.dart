@@ -72,8 +72,9 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            //   image: DecorationImage(image: AssetImage('assets/bg.jpg'),fit: BoxFit.cover)
-            color: Global.MainColor),
+            //image: DecorationImage(image: AssetImage('assets/rubriq_actualites.jpg'),fit: BoxFit.cover),
+            color: Global.MainColor
+        ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -134,7 +135,7 @@ class _LoginState extends State<Login> {
 
                                 if(_phoneNumber.text==null||_phoneNumber.text==""||_password.text==""||_password.text==null){
 
-                                  Fluttertoast.showToast(msg: "Phone Number and Password Required");
+                                  Fluttertoast.showToast(msg: "Vus devez entrer un téléphone et un mot de passe");
 
                                 }else {
                                   await http.post(
@@ -161,7 +162,7 @@ class _LoginState extends State<Login> {
                                           .pushNamed('usersList');
                                     } else {
                                       Fluttertoast.showToast(
-                                          msg: "Invalid ID or Password");
+                                          msg: "Téléphone ou Mot de passe invalide.");
                                     }
                                     print(response.body);
 

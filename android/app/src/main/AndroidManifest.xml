@@ -11,7 +11,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="final_mwinda_app_new"
+        android:label="Mwinda"
         android:icon="@mipmap/ic_launcher">
 
         <activity

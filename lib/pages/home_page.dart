@@ -1,3 +1,5 @@
+import 'package:final_mwinda_app/pages/chat/chat.dart';
+import 'package:final_mwinda_app/pages/chat/login.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/models/rubrique.dart';
 import 'package:final_mwinda_app/widgets/feed_card1.dart';
@@ -6,6 +8,7 @@ import 'package:final_mwinda_app/widgets/quizz_card.dart';
 import 'package:final_mwinda_app/widgets/directory_card.dart';
 import 'package:final_mwinda_app/widgets/chat_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 
@@ -146,6 +149,22 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Mwinda App", style: TextStyle(color: Colors.white),),
+        leading: new Container(),
+        actions: <Widget>[
+          // action button
+          IconButton(
+            icon: Icon(Icons.chat),
+            onPressed: () => Navigator.push(
+              context,               
+              PageTransition(
+                type: PageTransitionType.scale, 
+                alignment: Alignment.bottomCenter, 
+                duration: Duration(milliseconds: 500),
+                child: Login()
+              )
+            ),                    
+          ),
+        ]
       ),
       body: SingleChildScrollView(
         child: Container(
