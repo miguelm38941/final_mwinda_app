@@ -11,14 +11,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:page_transition/page_transition.dart';
 
 
-
 final List<String> imgList = [
-  'https://humanhist.com/wp-content/uploads/2018/06/unesco_hq_688px.jpg',
-  'https://img.lemde.fr/2017/10/12/0/0/3500/2334/688/0/60/0/918353a_PAR01_UNESCO-ELECTION-USA_1012_11.JPG',
-  'https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/assets/2016/06/24637/image1170x530cropped.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUM42Mk_6GPBN0uFg6GqwdFezRf-Md9GVnY4cCU7tN6hmDtHLJpQ&s',
-  'https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/assets/2014/01/18510/image1024x768.jpg',
-  'https://www.alwihdainfo.com/photo/art/grande/15462094-20756032.jpg'
+  'http://mwinda-rdc.org/images/appslider/1.jpg',
+  'http://mwinda-rdc.org/images/appslider/2.jpg',
+  'http://mwinda-rdc.org/images/appslider/3.jpg',
+  'http://mwinda-rdc.org/images/appslider/4.jpg',
+  'http://mwinda-rdc.org/images/appslider/5.jpg'
 ];
 
 final Widget placeholder = Container(color: Colors.grey);
@@ -117,6 +115,7 @@ class _HomePageState extends State<HomePage> {
             margin: EdgeInsets.all(0),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              //child: new Image.asset('assets/images/rubriq_actualites.jpg', fit: BoxFit.fill), 
               child: Image.network(
                 url,
                 fit: BoxFit.cover,

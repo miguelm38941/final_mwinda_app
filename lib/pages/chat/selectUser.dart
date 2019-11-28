@@ -70,7 +70,7 @@ class _SelectUsersState extends State<SelectUsers> {
                           ],
                         );
                       }).toList(),
-                    ):Center(child:Text("No Chat"));
+                    ):Center(child:Text("Aucune discussion"));
                 }
               },
             ),

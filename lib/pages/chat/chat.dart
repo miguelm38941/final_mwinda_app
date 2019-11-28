@@ -46,7 +46,9 @@ class _ChatState extends State<Chat> {
               : SizedBox()
         ],
       ),
-      body: Column(
+      body: Container (
+        color: Colors.lightBlue[50],
+        child: Column(
         children: <Widget>[
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
@@ -85,7 +87,9 @@ class _ChatState extends State<Chat> {
               },
             ),
           ),
-          Row(
+          Container(
+            color: Colors.lightBlue[200],
+          child: Row(
             children: <Widget>[
               GestureDetector(
                 onTap: () {},
@@ -160,15 +164,15 @@ class _ChatState extends State<Chat> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                        child: TextField(
+                      child: TextField(
                       controller: message,
-                      decoration: InputDecoration(border: InputBorder.none),
+                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10.0), fillColor: Colors.lightBlueAccent),
                     )),
                     GestureDetector(
                       onTap: () {
                         if (message.text != null &&
                             message.text.toString() != "") {
-                          //   Fluttertoast.showToast(msg: message.text);
+                          //  Fluttertoast.showToast(msg: message.text);
                           Global.isGroup
                               ? EnterGroupData(
                                   Data: message.text.toString(),
@@ -184,7 +188,7 @@ class _ChatState extends State<Chat> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.send),
+                        child: Icon(Icons.send, color: Colors.blueAccent,),
                       ),
                     ),
                   ],
@@ -192,8 +196,10 @@ class _ChatState extends State<Chat> {
               ))
             ],
           ),
+          ),
         ],
       ),
+    ),
     );
   }
 }
@@ -238,6 +244,7 @@ class _ChatState extends State<Chat> {
     );
   }
 }*/
+
 
 /*class LeftTile extends StatelessWidget {
   AudioPlayer audioplayer=new AudioPlayer();
@@ -343,79 +350,99 @@ class LeftTile extends StatelessWidget {
       children: <Widget>[
         Card(
           elevation: 5,
-          color: Colors.green[300],
+          color: Colors.white,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
             topRight: Radius.circular(15),
             bottomLeft: Radius.circular(15),
             bottomRight: Radius.circular(15),
           )),
-          child: Row(
+          child: Column(
             children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.all(10),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * .7),
-                    child: type == "text"
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(text),
-                            ],
-                          )
-                        : type == "image"
-                            ? Image.network(text)
-                            : GestureDetector(
-                                onTap: () async {
-                                  print("clicked");
-                                  audioplayer.play(text);
-                                  isPlaying = !isPlaying;
-                                  (context as Element).markNeedsBuild();
-
-                                  audioplayer.onAudioPositionChanged
-                                      .listen((Duration p) {
-                                    value = double.parse(
-                                        p.inMilliseconds.toString());
-                                    (context as Element).markNeedsBuild();
-                                  });
-
-                                  audioplayer.onPlayerCompletion
-                                      .listen((event) {
-                                    value = 0;
+              Container(
+                child: new Padding(
+                    padding: EdgeInsets.all(10),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * .7),
+                      child: type == "text"
+                          ? Container(
+                              child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(text,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0)),
+                              ],
+                            ))
+                          : type == "image"
+                              ? Image.network(text)
+                              : GestureDetector(
+                                  onTap: () async {
+                                    print("clicked");
+                                    audioplayer.play(text);
                                     isPlaying = !isPlaying;
                                     (context as Element).markNeedsBuild();
-                                  });
-                                },
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      isPlaying
-                                          ? Icons.pause
-                                          : Icons.play_arrow,
-                                      color: Colors.blue[700],
-                                    ),
-                                    Slider(
-                                        value: value,
-                                        onChanged: null,
-                                        min: 0,
-                                        max: double.parse(
-                                            parseDuration(document['duration'])
-                                                .inMilliseconds
-                                                .toString())),
-                                    Text(parseDuration(document['duration'])
-                                            .inMinutes
-                                            .toString() +
-                                        ":" +
-                                        parseDuration(document['duration'])
-                                            .inSeconds
-                                            .toString())
-                                  ],
+
+                                    audioplayer.onAudioPositionChanged
+                                        .listen((Duration p) {
+                                      value = double.parse(
+                                          p.inMilliseconds.toString());
+                                      (context as Element).markNeedsBuild();
+                                    });
+
+                                    audioplayer.onPlayerCompletion
+                                        .listen((event) {
+                                      value = 0;
+                                      isPlaying = !isPlaying;
+                                      (context as Element).markNeedsBuild();
+                                    });
+                                  },
+                                  child: Container(
+                                    color: Colors.grey[100],
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        isPlaying
+                                            ? Icons.pause
+                                            : Icons.play_arrow,
+                                        color: Colors.blue[700],
+                                      ),
+                                      Slider(
+                                          value: value,
+                                          onChanged: null,
+                                          min: 0,
+                                          max: double.parse(parseDuration(
+                                                  document['duration'])
+                                              .inMilliseconds
+                                              .toString())),
+                                      Text(parseDuration(document['duration'])
+                                              .inMinutes
+                                              .toString() +
+                                          ":" +
+                                          parseDuration(document['duration'])
+                                              .inSeconds
+                                              .toString())
+                                    ],
+                                  ),
+                                  )
                                 ),
-                              ),
-                  )),
-              Text("-" + document['msgby'])
+                    )),
+              ),
+              Global.isGroup ?
+              Container(
+                color: Colors.green[50],
+                child: Padding(
+                  child: Text(
+                    "-" + document['msgby'],
+                    style: TextStyle(fontSize: 10.0),
+                  ),
+                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                )
+              )
+              : Container(),
             ],
           ),
         ),
@@ -444,7 +471,7 @@ class RightTile extends StatelessWidget {
       children: <Widget>[
         Card(
           elevation: 5,
-          color: Colors.blue[100],
+          color: Colors.green[100],
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
@@ -461,8 +488,13 @@ class RightTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(text),
-                        ],
+                          Text(text,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0
+                            )
+                          ),
+                         ],
                       )
                     : type == "image"
                         ? Image.network(text)

@@ -1,3 +1,5 @@
+import 'package:final_mwinda_app/utils/utils.dart';
+
 import 'createGroup.dart';
 import 'register.dart';
 import 'selectUser.dart';
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.red
+        primaryColor: Colors.red,
+        fontFamily: 'Barlow'
       ),
       home: SplashScreen(),
       routes: {

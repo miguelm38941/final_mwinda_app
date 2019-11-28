@@ -20,11 +20,10 @@ class _UsersListState extends State<UsersList> {
     print("Pages Starts here");
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(/*"Chat"*/"Conversarions"),actions: <Widget>[ GestureDetector(
+      appBar: AppBar(title: Text(/*"Chat"*/"Conversations"),actions: <Widget>[ GestureDetector(
         onTap: () async {
           SharedPreferences pref = await SharedPreferences.getInstance();
           pref.clear();
@@ -78,16 +77,13 @@ class _UsersListState extends State<UsersList> {
                         Navigator.of(context).pushNamed('chat');
                    //     Fluttertoast.showToast(msg:  Global.currentChat,toastLength: Toast.LENGTH_LONG);
                       },
-                        title: new Text(document['name']),
+                        title: new Text(document['name'], style: TextStyle(fontWeight: FontWeight.bold),),
                         subtitle:
-
-
-
-
                         document['msgby']==null?
                        Text("Nouvelle Conversation"): Row(
                           children: <Widget>[
                             new Text(document['msgby']??""+" : ",style: TextStyle(fontWeight: FontWeight.bold),),
+                            SizedBox(width: 10,),
                             document['type']=="text"?
                             new Text(document['msg']??""):
                             document['type']=="image"?Icon(Icons.image):Icon(Icons.play_arrow),
