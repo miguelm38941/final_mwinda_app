@@ -77,7 +77,7 @@ class _UsersListState extends State<UsersList> {
                         Navigator.of(context).pushNamed('chat');
                    //     Fluttertoast.showToast(msg:  Global.currentChat,toastLength: Toast.LENGTH_LONG);
                       },
-                        title: new Text(document['name']),
+                        title: new Text(document['name'], style: TextStyle(fontWeight: FontWeight.bold),),
                         subtitle:
                         document['msgby']==null?
                        Text("Nouvelle Conversation"): Row(

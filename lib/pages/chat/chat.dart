@@ -430,15 +430,18 @@ class LeftTile extends StatelessWidget {
                                 ),
                     )),
               ),
+              Global.isGroup ? 
               Container(
-                  color: Colors.green[50],
-                  child: Padding(
-                    child: Text(
-                      "-" + document['msgby'],
-                      style: TextStyle(fontSize: 10.0),
-                    ),
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                  ))
+                color: Colors.green[50],
+                child: Padding(
+                  child: Text(
+                    "-" + document['msgby'],
+                    style: TextStyle(fontSize: 10.0),
+                  ),
+                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                )
+              )
+              : Container(),
             ],
           ),
         ),
