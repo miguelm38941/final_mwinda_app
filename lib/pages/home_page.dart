@@ -11,14 +11,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:page_transition/page_transition.dart';
 
 
-/*final List<String> imgList = [
-  'assets/images/1.jpg',
-  'assets/images/2.jpg',
-  'assets/images/3.jpg',
-  'assets/images/4.jpg',
-  'assets/images/5.jpg',
-];
-*/
 final List<String> imgList = [
   'http://mwinda-rdc.org/images/appslider/1.jpg',
   'http://mwinda-rdc.org/images/appslider/2.jpg',

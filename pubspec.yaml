@@ -78,8 +78,6 @@ flutter:
    - assets/images/girl_face.jpg
    - assets/images/women_educ.jpg
    - assets/images/children_educ.jpg
-   - assets/images/1.jpg
-   - assets/images/2.jpg
    - assets/audio/start_game.wav
    - assets/audio/fanfare.mp3
    - assets/audio/next.wav
