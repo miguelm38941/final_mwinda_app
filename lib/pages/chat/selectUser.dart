@@ -4,19 +4,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'global.dart';
 
-class SelectUser extends StatefulWidget {
+class SelectUsers extends StatefulWidget {
   @override
-  _SelectUserState createState() => _SelectUserState();
+  _SelectUsersState createState() => _SelectUsersState();
 }
 
-class _SelectUserState extends State<SelectUser> {
+class _SelectUsersState extends State<SelectUsers> {
 
   List<String> users = new List();
   List<String> names = new List();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(/*"Select Users"*/"Sélectionner"),),
+      appBar: AppBar(title: Text(/*"Select Users"*/"Sélectionner des users"),),
       body: Column(
         children: <Widget>[
           Expanded(

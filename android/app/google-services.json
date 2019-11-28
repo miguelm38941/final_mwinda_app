@@ -1,114 +1,35 @@
 {
   "project_info": {
-    "project_number": "461172283095",
-    "firebase_url": "https://chatsaurabhinfosys.firebaseio.com",
-    "project_id": "chatsaurabhinfosys",
-    "storage_bucket": "chatsaurabhinfosys.appspot.com"
+    "project_number": "235783966783",
+    "firebase_url": "https://mwinda-rdc.firebaseio.com",
+    "project_id": "mwinda-rdc",
+    "storage_bucket": "mwinda-rdc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:461172283095:android:e638e193af659bec938292",
-        "android_client_info": {
-          "package_name": "com.example.final_mwinda_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "461172283095-o43ovo83f0joaqg7l0sunog2mdkahqsf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBTJLDvx_l-4f5vGG_G3DnMaUwD05y21bA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "461172283095-o43ovo83f0joaqg7l0sunog2mdkahqsf.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "461172283095-hgmfag7hkv25r36ce21l8t394f8gggbi.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.saurabhinfosys.chat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:461172283095:android:48cd9e49d57af9dd938292",
+        "mobilesdk_app_id": "1:235783966783:android:79adbc89f680e0cfc1688a",
         "android_client_info": {
           "package_name": "com.example.final_mwinda_app_new"
         }
       },
       "oauth_client": [
         {
-          "client_id": "461172283095-o43ovo83f0joaqg7l0sunog2mdkahqsf.apps.googleusercontent.com",
+          "client_id": "235783966783-99s4calc4b4h4galkk5ijj41pg1f4m1k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBTJLDvx_l-4f5vGG_G3DnMaUwD05y21bA"
+          "current_key": "AIzaSyCf0JZEgEqWbv2aJl32fTrqRHEtiCNIN7c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "461172283095-o43ovo83f0joaqg7l0sunog2mdkahqsf.apps.googleusercontent.com",
+              "client_id": "235783966783-99s4calc4b4h4galkk5ijj41pg1f4m1k.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "461172283095-hgmfag7hkv25r36ce21l8t394f8gggbi.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.saurabhinfosys.chat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:461172283095:android:d6affa8307af5b72938292",
-        "android_client_info": {
-          "package_name": "com.saurabhinfosys.chat"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "461172283095-o43ovo83f0joaqg7l0sunog2mdkahqsf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBTJLDvx_l-4f5vGG_G3DnMaUwD05y21bA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "461172283095-o43ovo83f0joaqg7l0sunog2mdkahqsf.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "461172283095-hgmfag7hkv25r36ce21l8t394f8gggbi.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.saurabhinfosys.chat"
-              }
             }
           ]
         }

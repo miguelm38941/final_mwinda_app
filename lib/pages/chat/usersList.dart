@@ -85,7 +85,7 @@ class _UsersListState extends State<UsersList> {
 
 
                         document['msgby']==null?
-                       Text("New Conversation"): Row(
+                       Text("Nouvelle Conversation"): Row(
                           children: <Widget>[
                             new Text(document['msgby']??""+" : ",style: TextStyle(fontWeight: FontWeight.bold),),
                             document['type']=="text"?
@@ -108,6 +108,11 @@ class _UsersListState extends State<UsersList> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
+          /*FloatingActionButton(backgroundColor: Global.MainColor,heroTag: "tg0",onPressed: (){
+            Global.EditGroup=false;
+            Navigator.of(context).pushNamed('selectUser');
+          },child: Icon(Icons.chat_bubble_outline),),
+          SizedBox(width: 15,),*/
           FloatingActionButton(backgroundColor: Global.MainColor,heroTag: "tg1",onPressed: (){
             showDialog(context: context,builder: (context){
               return SimpleDialog(
@@ -126,7 +131,7 @@ class _UsersListState extends State<UsersList> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Text("New Conversation with",style: TextStyle(fontSize:MediaQuery.of(context).size.width*.05,color: Colors.white,fontWeight: FontWeight.bold),),
+                        child: Text("Nouvelle conversation",style: TextStyle(fontSize:MediaQuery.of(context).size.width*.05,color: Colors.white,fontWeight: FontWeight.bold),),
                       ),
                     ],
                   ),),
@@ -143,7 +148,7 @@ class _UsersListState extends State<UsersList> {
                         print( await AvailableUser(context,number: _number.text.toString()));
                //   Navigator.of(context).pop();
                 //  Fluttertoast.showToast(msg: "checking");
-                        },child: Text("Continue",style: TextStyle(color: Colors.white),) ,),
+                        },child: Text("Continuer",style: TextStyle(color: Colors.white),) ,),
                       ],
                     ),
                   ),

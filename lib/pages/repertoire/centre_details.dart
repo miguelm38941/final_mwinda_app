@@ -113,11 +113,6 @@ class CentreDetailsPage extends StatelessWidget {
               SizedBox(
                 height: 2.0,
               ),
-              Wrap(
-                children: userHobbies
-                    .map((hobby) => _buildHobbiesCards(hobby))
-                    .toList(),
-              )
             ],
           ),
         ),

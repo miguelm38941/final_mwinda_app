@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
         'register':(context)=>Register(),
         'usersList':(context)=>UsersList(),
         'createGroup':(context)=>CreateGroup(),
-        'selectUsers':(context)=>SelectUser()
-
+        'selectUsers':(context)=>SelectUsers(),
       },
     );
   }
