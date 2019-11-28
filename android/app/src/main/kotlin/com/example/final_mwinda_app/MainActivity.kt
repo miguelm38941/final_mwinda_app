@@ -1,4 +1,4 @@
-package com.example.final_mwinda_app_new
+package com.unesco.mwinda
 
 import android.os.Bundle
 

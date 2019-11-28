@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:235783966783:android:79adbc89f680e0cfc1688a",
+        "mobilesdk_app_id": "1:235783966783:android:9d455264b90574fac1688a",
         "android_client_info": {
-          "package_name": "com.example.final_mwinda_app_new"
+          "package_name": "com.unesco.mwinda"
         }
       },
       "oauth_client": [
