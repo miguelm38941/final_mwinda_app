@@ -20,11 +20,10 @@ class _UsersListState extends State<UsersList> {
     print("Pages Starts here");
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(/*"Chat"*/"Conversarions"),actions: <Widget>[ GestureDetector(
+      appBar: AppBar(title: Text(/*"Chat"*/"Conversations"),actions: <Widget>[ GestureDetector(
         onTap: () async {
           SharedPreferences pref = await SharedPreferences.getInstance();
           pref.clear();
@@ -80,14 +79,11 @@ class _UsersListState extends State<UsersList> {
                       },
                         title: new Text(document['name']),
                         subtitle:
-
-
-
-
                         document['msgby']==null?
                        Text("Nouvelle Conversation"): Row(
                           children: <Widget>[
                             new Text(document['msgby']??""+" : ",style: TextStyle(fontWeight: FontWeight.bold),),
+                            SizedBox(width: 10,),
                             document['type']=="text"?
                             new Text(document['msg']??""):
                             document['type']=="image"?Icon(Icons.image):Icon(Icons.play_arrow),

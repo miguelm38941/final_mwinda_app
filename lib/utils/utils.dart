@@ -36,6 +36,16 @@ class AvailableImages {
     'assetPath' : 'assets/images/post_banner.jpg',
   };
 
+  static const sliderOne = {
+    'assetImage' : AssetImage('assets/images/1.jpg'),
+    'assetPath' : 'assets/images/2.jpg',
+  };
+
+  static const sliderTwo = {
+    'assetImage' : AssetImage('assets/images/2.jpg'),
+    'assetPath' : 'assets/images/2.jpg',
+  };
+
   static const emptyState = {
     'assetImage' : AssetImage('assets/images/empty.png'),
     'assetPath' : 'assets/images/empty.png',
