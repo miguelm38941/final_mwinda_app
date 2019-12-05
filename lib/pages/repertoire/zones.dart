@@ -39,6 +39,7 @@ class ZonesPage extends StatelessWidget {
         }/**/
       });
       //debugPrint("444444" + posts.toString());
+      zones_list.sort((Province a, Province b) => a.nom.compareTo(b.nom));
       return zones_list;
     } else {
       // If that response was not OK, throw an error.
@@ -83,7 +84,6 @@ class ZonesPage extends StatelessWidget {
                     ),
                   ),
                 ),
-            
           ),
           new Transform.translate(
             offset: new Offset(0.0, MediaQuery.of(context).size.height * 0.1050),
@@ -111,7 +111,7 @@ class ZonesPage extends StatelessWidget {
                                   padding: EdgeInsets.all(16.0),
                                     child: AutoSizeText(
                                       snapshot.data[index].nom,
-                                      minFontSize: 25.0,
+                                      minFontSize: 18.0,
                                       textAlign: TextAlign.center,
                                       maxLines: 3,
                                       wrapWords: false,

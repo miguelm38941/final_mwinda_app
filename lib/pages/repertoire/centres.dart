@@ -36,6 +36,8 @@ class CentresPage extends StatelessWidget {
         }/**/
       });
       //debugPrint("444444" + posts.toString());
+
+      centres_list.sort((Centre a, Centre b)=>a.nom.compareTo(b.nom));
       return centres_list;
     } else {
       // If that response was not OK, throw an error.
@@ -108,7 +110,7 @@ class CentresPage extends StatelessWidget {
                                   padding: EdgeInsets.all(16.0),
                                     child: AutoSizeText(
                                       snapshot.data[index].nom,
-                                      minFontSize: 25.0,
+                                      minFontSize: 18.0,
                                       textAlign: TextAlign.center,
                                       maxLines: 3,
                                       wrapWords: false,

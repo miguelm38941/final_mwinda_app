@@ -32,6 +32,8 @@ class ProvincesPage extends StatelessWidget {
         }/**/
       });
       //debugPrint("444444" + posts.toString());
+      provinces_list.sort((Province a, Province b)=> a.nom.compareTo(b.nom));
+
       return provinces_list;
     } else {
       // If that response was not OK, throw an error.
@@ -105,7 +107,7 @@ class ProvincesPage extends StatelessWidget {
                                   padding: EdgeInsets.all(16.0),
                                     child: AutoSizeText(
                                       snapshot.data[index].nom,
-                                      minFontSize: 25.0,
+                                      minFontSize: 18.0,
                                       textAlign: TextAlign.center,
                                       maxLines: 3,
                                       wrapWords: false,

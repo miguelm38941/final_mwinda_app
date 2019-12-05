@@ -107,12 +107,18 @@ class _BlogPageState extends State<BlogPage> {
                       ]                
                     ) 
                   );
-                } else {                  
+                } else if (snapshot.hasError){
                   return Text("${snapshot.error}");
                   /*return Align(
                     alignment: FractionalOffset.center,
                     child: CircularProgressIndicator(),
                   );*/
+                }
+                else{
+                  return Align(
+                    alignment: FractionalOffset.center,
+                    child: CircularProgressIndicator(),
+                  );
                 }
                 // By default, show a loading spinner.
               }

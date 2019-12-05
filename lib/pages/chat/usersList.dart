@@ -51,6 +51,7 @@ class _UsersListState extends State<UsersList> {
             default:
               return snapshot.data.documents.isNotEmpty? ListView(
                 children: snapshot.data.documents.map((DocumentSnapshot document) {
+                  debugPrint(document.toString());
                   return Column(
                     children: <Widget>[
                       new ListTile(onTap: (){
@@ -72,6 +73,7 @@ class _UsersListState extends State<UsersList> {
                           }
 
                         Global.EditGroup=false;
+                        print(document);
                         Global.ChatTitle=document['name'].toString();
                         Global.OtherUserId=document.documentID;
                         Navigator.of(context).pushNamed('chat');
