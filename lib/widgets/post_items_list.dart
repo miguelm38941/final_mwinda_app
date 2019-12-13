@@ -6,6 +6,7 @@ import 'package:final_mwinda_app/utils/utils.dart';
 import 'package:final_mwinda_app/pages/blog/post.dart';
 import 'package:http/http.dart' as http;
 import 'package:basic_utils/basic_utils.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class AwesomeListItem extends StatefulWidget {
   int id;
@@ -94,12 +95,17 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                       //elevation: 10.0,
                       child: ClipRRect(
                           borderRadius: new BorderRadius.circular(20.0),
-                          child: Image.network(
+child: new CachedNetworkImage(
+   imageUrl: widget.image,
+   placeholder: (context, url) => CircularProgressIndicator(),
+   errorWidget: (context, url, error) => Icon(Icons.error),
+),
+                          /*child: Image.network(
                               widget.image,
                               height: 150.0,
                               width: 150.0,
                               fit: BoxFit.fitHeight,
-                          ),
+                          ),*/
                       ),
                     //),
                   ),

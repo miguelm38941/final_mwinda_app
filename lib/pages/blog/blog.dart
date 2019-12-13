@@ -1,6 +1,7 @@
 import 'dart:math';
 
-
+import 'package:final_mwinda_app/resources/post_db_provider.dart';
+import 'package:final_mwinda_app/widgets/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:final_mwinda_app/pages/blog/post.dart';
 import 'package:http/http.dart' as http;
@@ -27,41 +28,71 @@ class BlogPage extends StatefulWidget {
 
 class _BlogPageState extends State<BlogPage> {
 
+ 
+
   Future<List<Post>> showPosts() async {
     //debugPrint('000000000000000000');
-    var response = await http.get('https://www.mwinda-rdc.org/mobileapi/blog/posts');
-    //debugPrint("11111111111");
-    var dataDecoded = json.decode(response.body);
-    //debugPrint("2222222" + dataDecoded.toString());
+    try {
 
-    List<Post> posts = List();
+      var response = await http.get('https://www.mwinda-rdc.org/mobileapi/blog/posts');
+      //debugPrint("11111111111");
+      var dataDecoded = json.decode(response.body);
+      //debugPrint("2222222" + dataDecoded.toString());
+      //List<Post> posts = List();
 
-    if (response.statusCode == 200) {
-
-      dataDecoded.forEach((post){
-      //debugPrint("3333333" + post.toString());
-
-        String title = post['title'];
-        if(title.length>25){
-          title = post['title']; //.substring(1,25) + "...";
-        }
-        String body = post['article'].replaceAll(RegExp(r'\n'), " ");
-        if (post['image'] != null) {
-          if(post['image'].contains('images') ) {
-            posts.add(new Post(int.parse(post['id']), title, post['category'], body, post['image']));
+      if (response.statusCode == 200) {
+        dataDecoded.forEach((post){
+        debugPrint("3333333" + post.toString());
+          /*String title = post['title'];
+          if(title.length>25){
+            title = post['title']; //.substring(1,25) + "...";
           }
-        } 
-      });
-      //debugPrint("444444" + posts.toString());
-      return posts;
-    } else {
-      // If that response was not OK, throw an error.
-      throw Exception('Echec du chargement des articles');
+          String body = post['article'].replaceAll(RegExp(r'\n'), " ");
+          if (post['image'] != null) {
+            if(post['image'].contains('images') ) {
+              posts.add(new Post(int.parse(post['id']), title, post['category'], body, post['image']));
+            }
+          } */
+          var article = Post(
+                      id: int.parse(post['id']), 
+                      title: post['title'], 
+                      category: post['category'],
+                      text: post['article'], 
+                      image: post['image']
+                    );
+          PostDatabaseProvider.db.addPostToDatabase(article);
+        });
+      } else {
+        // If that response was not OK, throw an error.
+        throw Exception('Echec du chargement des articles');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      //Future<List<Post>> posts = PostDatabaseProvider.db.getAllPosts();
+      //return posts;
     }
+
+    Future<List<Post>> posts = PostDatabaseProvider.db.getAllPosts();
+    return posts;
   }
 
   @override
   Widget build(BuildContext context) {
+
+      /*Person jane = Person(
+        id: 1,
+        name: "Jane",
+        city: "Ouaga",
+      );
+      PersonDatabaseProvider.db.addPersonToDatabase(jane);
+
+      Person john = Person(
+        id: 1,
+        name: "John",
+        city: "Bobo",
+      );
+      PersonDatabaseProvider.db.addPersonToDatabase(john);*/
+
     return new Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
@@ -77,6 +108,34 @@ class _BlogPageState extends State<BlogPage> {
           new Transform.translate(
             offset: new Offset(0.0, MediaQuery.of(context).size.height * 0.1050),
             //MediaQuery.of(context).size.height * 0.1050),
+  
+        /*child: FutureBuilder<List<Post>>(
+        future: showPosts(),
+        builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              physics: BouncingScrollPhysics(),
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                Post item = snapshot.data[index];
+                return Container(
+                  
+                  child: ListTile(
+                    title: Text(item.title),
+                    subtitle: Text(item.category),
+                    leading: CircleAvatar(child: Text(item.id.toString())),
+                  ),
+                );
+              },
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),*/
+  
+  
+  
             child: FutureBuilder(
               future: showPosts(),
               builder: (context, snapshot) {

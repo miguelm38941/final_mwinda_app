@@ -12,11 +12,11 @@ import 'package:page_transition/page_transition.dart';
 
 
 final List<String> imgList = [
-  'http://mwinda-rdc.org/images/appslider/1.jpg',
-  'http://mwinda-rdc.org/images/appslider/2.jpg',
-  'http://mwinda-rdc.org/images/appslider/3.jpg',
-  'http://mwinda-rdc.org/images/appslider/4.jpg',
-  'http://mwinda-rdc.org/images/appslider/5.jpg'
+  'assets/images/appslider/1.jpg',
+  'assets/images/appslider/2.jpg',
+  'assets/images/appslider/3.jpg',
+  'assets/images/appslider/4.jpg',
+  'assets/images/appslider/5.jpg'
 ];
 
 final Widget placeholder = Container(color: Colors.grey);
@@ -110,17 +110,17 @@ class _HomePageState extends State<HomePage> {
       autoPlay: true,
       enlargeCenterPage: true,
       items: imgList.map(
-        (url) {
+        (url) {      
           return Container(
             margin: EdgeInsets.all(0),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              //child: new Image.asset('assets/images/rubriq_actualites.jpg', fit: BoxFit.fill), 
-              child: Image.network(
+              child: new Image.asset(url, fit: BoxFit.cover, width: 1000.0,), 
+              /*child: Image.network(
                 url,
                 fit: BoxFit.cover,
                 width: 1000.0,
-              ),
+              ),*/
             ),
           );
         },

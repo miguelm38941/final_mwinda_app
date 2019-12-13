@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_mwinda_app/utils/phone_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -102,7 +103,7 @@ class _CreateGroupState extends State<CreateGroup> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: Text(/*"New Conversation with"*/"Nouvelle conversation",style: TextStyle(fontSize:MediaQuery.of(context).size.width*.05,color: Colors.white,fontWeight: FontWeight.bold),),
+                      child: Text(/*"New Conversation with"*/"Ajouter un utilisateur",style: TextStyle(fontSize:MediaQuery.of(context).size.width*.05,color: Colors.white,fontWeight: FontWeight.bold),),
                     ),
                   ],
                 ),),
@@ -111,7 +112,14 @@ class _CreateGroupState extends State<CreateGroup> {
                 padding: const EdgeInsets.fromLTRB(20,10,20,0),
                 child: Column(
                   children: <Widget>[
-                    TextField(controller: _number,decoration: InputDecoration(filled:true,fillColor: Colors.white,hintText: /*"Number"*/"Téléphone",border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )),),
+                    TextField(
+                      controller: _number,
+                      decoration: InputDecoration(filled:true,fillColor: Colors.white,hintText: /*"Number"*/"Téléphone",border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )),                          
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                                              PhoneFormatter(),
+                                            ],
+),
                     SizedBox(height: 10,),
                     RaisedButton(color: Colors.blue[900],onPressed: () async {
                       if( users.contains(_number.text.toString()))
@@ -156,7 +164,7 @@ class _CreateGroupState extends State<CreateGroup> {
             padding: const EdgeInsets.all(20.0),
             child: TextField(enabled: Global.EditGroup==true?false:true,controller: _name,decoration: InputDecoration(hintText: /*"Name"*/"Nom du groupe",border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )),),
           ),
-          Container(color:Global.MainColor,width: MediaQuery.of(context).size.width,height: 40,child: Center(child: Text("Utilisateurs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),),)
+          Container(color:Global.MainColor,width: MediaQuery.of(context).size.width,height: 40,child: Center(child: Text("Membres",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),),)
           ,Expanded(child: ListView.builder(
           itemCount: users.length,itemBuilder: (c,i){
             return Column(
@@ -194,10 +202,10 @@ class _CreateGroupState extends State<CreateGroup> {
 
             if(_name.text.toString()==null||_name.text.toString()=="")
               {
-                Fluttertoast.showToast(msg: "Please Name the Group");
+                Fluttertoast.showToast(msg: "Veuillez donnez un nom au groupe");
               }else if(users.isEmpty)
                 {
-                  Fluttertoast.showToast(msg: "Please Add Users to Group");
+                  Fluttertoast.showToast(msg: "Veuillez ajouter des membres a votre groupe");
                 }else{
               AddGroup(context,name:_name.text.toString(),users: users ,usersName: usersName);
             }
@@ -208,7 +216,7 @@ class _CreateGroupState extends State<CreateGroup> {
             });
 
           },child: Global.EditGroup==true?SizedBox():
-          Container(color:Global.MainColor,width: MediaQuery.of(context).size.width,height: 50,child: Center(child: isloading?CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.red),backgroundColor: Colors.white,):Text("Create Group",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),),))
+          Container(color:Global.MainColor,width: MediaQuery.of(context).size.width,height: 50,child: Center(child: isloading?CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.red),backgroundColor: Colors.white,):Text("Enregistrer",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),),))
         ],
       ),
     );

@@ -28,8 +28,19 @@ class PostDetailsPage extends StatelessWidget {
     if (response.statusCode == 200) {
       debugPrint("444444" + post.toString());
       //this.userId = int.parse(post['id']);
-      return new Post(int.parse(post['id']), post['title'], post['category'],
-          post['article'], post['image']);
+
+      /*+Person jane = Person(
+        id: 1,
+        name: "Jane",
+        city: "Ouaga",
+      );*/
+      return Post(
+                    id: int.parse(post['id']), 
+                    title: post['title'], 
+                    category: post['category'],
+                    text: post['article'], 
+                    image: post['image']
+      );
     } else {
       // If that response was not OK, throw an error.
       throw Exception('Echec du chargement des articles');

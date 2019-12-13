@@ -16,7 +16,7 @@ class _SelectUsersState extends State<SelectUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(/*"Select Users"*/"Sélectionner des users"),),
+      appBar: AppBar(title: Text(/*"Select Users"*/"Sélectionner des utilisateurs"),),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -26,7 +26,7 @@ class _SelectUsersState extends State<SelectUsers> {
                 if (snapshot.hasError)
                   return new Text('Error: ${snapshot.error}');
                 switch (snapshot.connectionState) {
-                  case ConnectionState.waiting: return new Text('Loading...');
+                  case ConnectionState.waiting: return new Text('Chargement...');
                   default:
                     return snapshot.data.documents.isNotEmpty? ListView(
                       children: snapshot.data.documents.map((DocumentSnapshot document) {

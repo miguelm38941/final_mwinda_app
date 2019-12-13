@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_mwinda_app/utils/phone_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,7 +47,20 @@ class _RegisterState extends State<Register> {
                   children: <Widget>[
                     TextField(controller: _name,decoration: InputDecoration(filled: true,fillColor: Colors.white,hintText: /*"Name"*/"Nom d'utilisateur",border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )),),
                     SizedBox(height: 10,),
-                    TextField(controller: _phoneNumber,decoration: InputDecoration(filled: true,fillColor: Colors.white,hintText: /*"Phone Number"*/"Téléphone",border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )),keyboardType: TextInputType.number,),
+                    TextField(
+                      controller: _phoneNumber,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: /*"Phone Number"*/"Téléphone",
+                        border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )
+                      ),
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                                          PhoneFormatter(),
+                                          //WhitelistingTextInputFormatter(RegExp("/00234[0-9]{10}/")),
+                                        ],
+                    ),
                     SizedBox(height: 10,),
                     TextField(controller: _password,decoration: InputDecoration(filled: true,fillColor: Colors.white,hintText: /*"Password"*/"Mot de passe",border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(20)) )),obscureText: true,),
                     SizedBox(height: 10,),

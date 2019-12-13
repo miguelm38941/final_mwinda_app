@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_mwinda_app/utils/phone_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -94,6 +95,10 @@ class _LoginState extends State<Login> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)))),
                       keyboardType: TextInputType.number,
+                      inputFormatters: [
+                                          PhoneFormatter(),
+                                          //WhitelistingTextInputFormatter(RegExp("/00234[0-9]{10}/")),
+                                        ],
                     ),
                     SizedBox(
                       height: 10,

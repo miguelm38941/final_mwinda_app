@@ -62,14 +62,18 @@ class _ChatState extends State<Chat> {
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError)
                   return new Text('Error: ${snapshot.error}');
+                if(snapshot.hasData){
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     return new Text('Loading...');
                   default:
+                  //print("Cr chat -- "+snapshot.data.documents[0]['msg'].toString());
+
                     return new ListView(
                       reverse: true,
                       children: snapshot.data.documents
                           .map((DocumentSnapshot document) {
+                            debugPrint("..........."+document['msg'].toString());
                         return document['uid'] == Global.Uid
                             ? RightTile(
                                 id: document['uid'],
@@ -83,6 +87,13 @@ class _ChatState extends State<Chat> {
                                 document: document);
                       }).toList(),
                     );
+                }
+                }
+                else{
+                  return Align(
+                    alignment: FractionalOffset.center,
+                    child: CircularProgressIndicator(),
+                  );
                 }
               },
             ),
